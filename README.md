@@ -1,2 +1,1 @@
-# mapbiomas-training
-MapBiomas training sessions
+# MapBiomas training sessions
