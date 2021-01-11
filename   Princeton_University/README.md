@@ -4,17 +4,6 @@
     <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
 </div>
 
-# Task list
-- [x] Criar repositório para o curso
-- Desenvolver material para o **dia 1**
-    - [ ] Script com as etapas para fazer o mosaico
-    - [ ] Script avançado para fazer mosaicos
-- Desenvolver material para o **dia 2**
-    - [ ] Script com as etapas de uma classificação básica
-- [ ] Desenvolver material para o **dia 3** 
-- [ ] Desenvolver material para o **dia 4** 
-- [ ] Desenvolver material para o **dia 5** 
-
 # About
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
