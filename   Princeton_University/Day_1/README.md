@@ -36,7 +36,7 @@ O resultado é a impressão no console de informações sobre a coleção filtra
 ![console](./Assets/console-information.png)
 
 ## 1.3 Filtering by cloud cover percentage
-
+Podemos filtrar as imagens de uma coleção usando qualquer informação contida no metadado das imagens. Neste exemplo, vamos utilizar a propriedade `CLOUD_COVER`. Esta propriedade armazena o percentual de cobertura de nuvens detectado pelo algoritmo do USGS.
 ```javascript
 // Filter images with less than 50% of cloud cover
 collection = collection
@@ -46,8 +46,10 @@ collection = collection
 print('Images with less than 50% of cloud cover:', collection);
 ```
 [Link](https://code.earthengine.google.com/eee987609a5988f7952495653a1721a8)
+
 ## 1.4 Selecting bands
 
+Vamos utilizar neste exemplo as bandas `red, green, blue, nir, swir 1 e swir 2` que estão respectivamente nomeadas como `B2, B3, B4, B5, B6, B7`. É necessário selecionar a banda de qualidade também `pixel_qa`, pois vamos utiliza-lá mais adiante para remover as nuvens.
 ```javascript
 var bandNames = ['B2','B3','B4','B5','B6','B7','pixel_qa'];
 
@@ -58,3 +60,18 @@ collection = collection.select(bandNames);
 print('Images with selected bands:', collection);
 ```
 [Link](https://code.earthengine.google.com/f7c1d2d42402f418ad24082387298413)
+
+## 1.5 Adding data to map
+Vamos dar uma olhada no mapa como está a nossa coleção.
+
+```javascript
+var visParams = {
+    bands: ['B6', 'B5', 'B4'],
+    gain: [0.08,0.06,0.2]
+};
+
+Map.addLayer(collection, visParams, 'collection');
+```
+![Add data to map](./Assets/map-add-layer.png)
+
+[Link](https://code.earthengine.google.com/577ed08b58ab11c50ecbf0644d486468)
