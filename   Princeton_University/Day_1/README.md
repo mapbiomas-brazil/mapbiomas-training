@@ -45,7 +45,7 @@ collection = collection
 // prints the collection structure
 print('Images with less than 50% of cloud cover:', collection);
 ```
-
+[Link](https://code.earthengine.google.com/eee987609a5988f7952495653a1721a8)
 ## 1.4 Selecting bands
 
 ```javascript
@@ -57,3 +57,4 @@ collection = collection.select(bandNames);
 // prints the collection structure
 print('Images with selected bands:', collection);
 ```
+[Link](https://code.earthengine.google.com/f7c1d2d42402f418ad24082387298413)
