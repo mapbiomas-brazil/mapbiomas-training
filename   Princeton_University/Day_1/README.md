@@ -62,7 +62,7 @@ print('Images with selected bands:', collection);
 [Link](https://code.earthengine.google.com/f7c1d2d42402f418ad24082387298413)
 
 ## 1.5 Adding data to map
-Vamos dar uma olhada no mapa como está a nossa coleção. Neste momento, ainda temos as imagens com nuvens. Podemos utilizar o `inspector` para checar os valores dos pixels das imagens. Faça a sua inspeção!
+Vamos dar uma olhada no mapa e ver como está a nossa coleção. Neste momento, ainda temos as imagens com nuvens. Podemos utilizar o `inspector` para checar os valores dos pixels das imagens. Faça a sua inspeção!
 
 ```javascript
 var visParams = {
