@@ -220,3 +220,4 @@ var mosaic = median.addBands(minimum).addBands(maximum);
 
 print('final mosaic:', mosaic);
 ```
+[Link](https://code.earthengine.google.com/02f5deabea8edd04f52fa34b68dd00d7)
