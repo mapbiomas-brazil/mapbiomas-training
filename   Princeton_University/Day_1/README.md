@@ -212,7 +212,7 @@ print('median mosaic:', median);
 ![Reduce to median](./Assets/median-mosaic.png)
 [Link](https://code.earthengine.google.com/6b9b9d6d31a8be09db150d6ac6c69be8)
 
-## 1.9 Make final mosaic
+## 1.9 Make the final mosaic
 
 ```javascript
 // Merges the median, minimum and maximum mosaics
