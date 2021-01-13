@@ -1,1 +1,2 @@
+
 # MapBiomas training sessions

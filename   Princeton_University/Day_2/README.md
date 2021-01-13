@@ -65,11 +65,13 @@ print('Images with selected bands:', collection);
 Vamos dar uma olhada no mapa e ver como está a nossa coleção. Neste momento, ainda temos as imagens com nuvens. Podemos utilizar o `inspector` para checar os valores dos pixels das imagens. Faça a sua inspeção!
 
 ```javascript
+// Set a visualization parameters object
 var visParams = {
     bands: ['B6', 'B5', 'B4'],
     gain: [0.08,0.06,0.2]
 };
 
+// Add collection to map
 Map.addLayer(collection, visParams, 'collection');
 ```
 ![Add data to map](./Assets/map-add-layer.png)
@@ -221,3 +223,19 @@ var mosaic = median.addBands(minimum).addBands(maximum);
 print('final mosaic:', mosaic);
 ```
 [Link](https://code.earthengine.google.com/02f5deabea8edd04f52fa34b68dd00d7)
+
+## 1.10 Export mosaic to GEE asset
+
+```javascript
+// Export the mosaic to your asset
+Export.image.toAsset({
+    image: mosaic, 
+    description: 'mosaic-2020', 
+    assetId: 'mosaic-2020', 
+    pyramidingPolicy: {'.default': 'mean'}, 
+    region: roi, 
+    scale: 30, 
+    maxPixels: 1e13
+});
+```
+[Link](https://code.earthengine.google.com/730cbb39b8171afb16e62220c5cf5678)

@@ -143,3 +143,14 @@ print('median mosaic:', median);
 var mosaic = median.addBands(minimum).addBands(maximum);
 
 print('final mosaic:', mosaic);
+
+// Export the mosaic to your asset
+Export.image.toAsset({
+    image: mosaic,
+    description: 'mosaic-2020',
+    assetId: 'mosaic-2020',
+    pyramidingPolicy: { '.default': 'mean' },
+    region: roi,
+    scale: 30,
+    maxPixels: 1e13
+});
