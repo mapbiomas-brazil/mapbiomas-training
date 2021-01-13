@@ -176,6 +176,7 @@ var collectionWithIndexes = collectionWithoutClouds
     .map(getNDWI)
     .map(getEVI);
 
+// Sets a visualization parameter object to NDVI data
 var visNdvi = {
     bands: ['ndvi'],
     min: 0,
@@ -194,11 +195,12 @@ print('collection with indexes:', collectionWithoutClouds);
 ## 1.8 Make the median, minimum and maximum mosaics
 
 ```javascript
-// For each image, applies the functions getNDVI, getNDWI and getEVI.
+// Reduce collection to median, minimum and maximum values
 var median = collectionWithIndexes.reduce(ee.Reducer.median());
 var minimum = collectionWithIndexes.reduce(ee.Reducer.min());
 var maximum = collectionWithIndexes.reduce(ee.Reducer.max());
 
+// Sets a visualization parameter object to NDVI median
 var visNdviIndex = {
     bands: ['ndvi_median'],
     min: 0,
