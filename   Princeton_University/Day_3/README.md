@@ -54,7 +54,7 @@ var samples = vegetation.merge(notVegetation).merge(water);
 
 ### 2.2.2. Collect the samples
 ![samples](./Assets/samples.png)
-[Link](https://code.earthengine.google.com/77a6c53208de1eb68dc43d5442b10e00{:target="_blank"})
+[Link](https://code.earthengine.google.com/77a6c53208de1eb68dc43d5442b10e00)
 
 Agora vamos sortear pontos aleatórios dentro dos polígonos que coletamos, pois o treinamento do classificador se faz 
 
