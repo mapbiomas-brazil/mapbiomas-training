@@ -34,7 +34,7 @@ Map.addLayer(mosaic, visParams, 'Mosaic');
 Map.centerObject(mosaic, 9);
 ```
 ![load image](./Assets/load-image.png)
-[Link](https://code.earthengine.google.com/a0651d74137aec7017cb6c027e17ddd9)
+<a href="https://code.earthengine.google.com/a0651d74137aec7017cb6c027e17ddd9" target="_blank">Link</a>
 
 ## 2.2. Collect manual samples
 ### 2.2.1. Create a feature collection
