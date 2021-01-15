@@ -11,5 +11,5 @@ This training course aims to briefly explain and demonstrate the core GIS, Remot
 * [Day 1 - MapBiomas presentation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/%20%20Princeton_University/Day_1)
 * [Day 2 - Accessing Satellite Images and Creating Mosaics](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/%20%20Princeton_University/Day_2)
 * [Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/%20%20Princeton_University/Day_3)
-* [Day 4 - Spatial filter, temporal filter and area calculation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/%20%20Princeton_University/Day_4)
-* [Day 5 - Getting MapBiomas transitions](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/%20%20Princeton_University/Day_5)
+* [Day 4 - Spatial filter, Temporal Filter and Area Calculation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/%20%20Princeton_University/Day_4)
+* [Day 5 - Identifying Land Use and Land Cover Changes + Applications](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/%20%20Princeton_University/Day_5)
