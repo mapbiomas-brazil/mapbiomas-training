@@ -5,6 +5,9 @@
 </div>
 
 # Concepts of the Day
+`Image Collection´: As straightforward as it could be, it is a collection of images. You may think of it as a pile of images. The Z-axis represents time, X-axis and Y-axis represent the Earth's surface.
+
+<img src="./Assets/ImageCollection.jpeg" alt="drawing" width="500"/>
 
 `Mosaic`: A mosaic is a combination or merging of two or more matrices. Any given mosaic can be a multiband or single-band mosaic. The MapBiomas project works with the concept of multiband mosaics.
 
