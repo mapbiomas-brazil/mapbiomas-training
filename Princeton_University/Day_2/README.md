@@ -31,6 +31,10 @@
 |  7|128|255|Unused|
 ||||
 
+<p align="center">
+    <img src="https://smbyc.github.io/CloudMasking/img/filter_cloud_qa_bits.png" alt="drawing" width="500"/>
+</p>
+
 **Vegetation and Water Index**: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
 
 <p align="center">
