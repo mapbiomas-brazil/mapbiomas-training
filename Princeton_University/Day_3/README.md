@@ -7,7 +7,9 @@
 # 2. Classification using Random Forest
 Nesta sessão vamos aprender a carregar uma imagem, coletar amostras, treinar um modelo random forest e executar a classifiação.
 
-## 2.1. Load mosaic
+## 2.1. Load data from asset
+
+### 2.1.1. Load the mosaic as an ee.Image
 ```javascript
 // Image asset id
 var imageId = "projects/mapbiomas/assets/mosaic-2020";
@@ -19,7 +21,7 @@ var mosaic = ee.Image(imageId);
 print('Mosaic:', mosaic);
 ```
 
-## 2.2. Add mosaic to map
+### 2.2. Add mosaic to map
 ```javascript
 // Set the visualization parameters
 var visParams = {
@@ -43,22 +45,119 @@ Neste exemplo, vamos mapear três classes: `vegetação, não vegetação e águ
 
 ![load image](./Assets/create-feature-collection.png)
 
-### 2.2.2. Merge the feature collections
+A coleta das amostras resulta em um conjunto de polígonos semelhante ao que vemos na figura abaixo:
 
-Para utilizar as feature collections no treinamento do classificador é necessário unir os três conjuntos em uma única coleção. Preste ateção que até aqui ainda não temos dados armazenados em nenhuma das três feature collections.
+![samples](./Assets/samples.png)
+[Link](https://code.earthengine.google.com/18babe6933e054bc7dbc357c255d27b5)
+
+## 2.3. Generate random points
+
+Após a coleta das amostras em formato de polígono, precisamos gerar pontos aleatórios dentro dessas regiões. Isso nos ajuda a ter maior diversidade de amostras. Nesta sessão, apresentamos uma função para coletar os pontos aleatórios dentro dos polígonos que nós desenhamos. 
 
 ```javascript
-// Merge all samples into a featureCollection
-var samples = vegetation.merge(notVegetation).merge(water);
+// Create a function to collect random point inside the polygons
+var generatePoints = function(polygons, nPoints){
+    
+    // Generate N random points inside the polygons
+    var points = ee.FeatureCollection.randomPoints(polygons, nPoints);
+    
+    // Get the class value propertie
+    var classValue = polygons.first().get('class');
+    
+    // Iterate over points and assign the class value
+    points = points.map(
+        function(point){
+            return point.set('class', classValue);
+        }
+    );
+    
+    return points;
+    
+};
 ```
 
-### 2.2.2. Collect the samples
-![samples](./Assets/samples.png)
-[Link](https://code.earthengine.google.com/77a6c53208de1eb68dc43d5442b10e00)
+Em seguida, usamos essa função para coletar os pontos em cada grupo de polígonos criado. Observe que a função recebe dois argumentos: `polygons` e `nPoints`. Estes argumentos são respectivamente os `polígonos desenhados` e o `número de pontos que desejamos coletar`. Existe outras formas mais precisas para definir a quantidade de pontos a ser coletados. Por exemplo, podemos definir o tamanho do conjunto de pontos usando como referência a proporção de área conhecida da sua região de interesse `roi`. O objetivo deste tutorial é mostrar uma abordagem introdutória e por isso estamos definindo empiricamente 100 pontos para `vegetation`, 100 pontos para `notVegetation` e 50 pontos para `water`.
 
-Agora vamos sortear pontos aleatórios dentro dos polígonos que coletamos, pois o treinamento do classificador se faz 
+```javascript
+// Collect random points inside your polygons
+var vegetationPoints = generatePoints(vegetation, 100);
+
+var notVegetationPoints = generatePoints(notVegetation, 100);
+
+var waterPoints = generatePoints(water, 50);
+```
+
+Para utilizar os pontos no treinamento do classificador é necessário unir os três conjuntos em uma única coleção.
 
 ```javascript
 // Merge all samples into a featureCollection
-var samples = vegetation.merge(notVegetation).merge(water);
+var samples = vegetationPoints.merge(notVegetationPoints).merge(waterPoints);
+
+print(samples);
+
+Map.addLayer(samples, {color: 'red'}, 'samples');
+```
+![samples](./Assets/generate-random-points.png)
+
+## 2.4. Collect the spectral information
+
+Uma vez que temos os pontos com as classes definidas, precisamos capturar a informação espectral dos píxeis que tocam os pontos.
+
+```javascript
+// Collect the spectral information to get the trained samples
+var trainedSamples = mosaic.reduceRegions({
+    'collection': samples, 
+    'reducer': ee.Reducer.first(), 
+    'scale': 30,
+  });
+  
+print(trainedSamples);
+```
+
+Observe o console e veja que, além da propriedade `class`, os pontos possuem agora o valor do pixel em cada banda do mosaico.
+
+![samples](./Assets/trained-samples.png)
+
+[Link](https://code.earthengine.google.com/db2b9bff4e672fc6f078e3aa6f170383)
+
+## 2.5. Training the Random Forest classifier
+
+```javascript
+var classifier = ee.Classifier.smileRandomForest({
+    'numberOfTrees': 50
+});
+
+classifier = classifier.train({
+    'features': trainedSamples, 
+    'classProperty': 'class', 
+    'inputProperties': [
+        'B2_max',
+        'B2_median',
+        'B2_min',
+        'B3_max',
+        'B3_median',
+        'B3_min',
+        'B4_max',
+        'B4_median',
+        'B4_min',
+        'B5_max',
+        'B5_median',
+        'B5_min',
+        'B6_max',
+        'B6_median',
+        'B6_min',
+        'B7_max',
+        'B7_median',
+        'B7_min',
+        'evi_max',
+        'evi_median',
+        'evi_min',
+        'ndvi_max',
+        'ndvi_median',
+        'ndvi_min',
+        'ndwi_max',
+        'ndwi_median',
+        'ndwi_min',
+    ]
+    })
 ```

@@ -7,7 +7,7 @@
 # 1. Creating a mosaic
 
 ## 1.1 Creating a region of interest (ROI)
-For this example, we need to define a region of interest using the geometry editing panel of the code editor interface. Open the code editor, click on the "draw a shape" button and draw a polygon anywhere in the planet. Be careful not to create a large polygon, as this may delay the execution of this tutorial. In this example, we will change the name of the geometry to  `roi`. 
+For this example, we need to define a region of interest using the geometry editing panel of the code editor interface. Open the code editor, click on the "draw a shape" button ![draw a shape](./Assets/drawing-1.png) and draw a polygon anywhere in the planet. Be careful not to create a large polygon, as this may delay the execution of this tutorial. In this example, we will change the name of the geometry to  `roi`. 
 
 ![ROI](./Assets/roi.png)
 [Link](https://code.earthengine.google.com/1e15221cf1d601e3d1a881b11421a062)
