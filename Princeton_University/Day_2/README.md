@@ -20,62 +20,7 @@
 **Landsat Bit Values**: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'bit value' QA Bands. The bit values are a digital parameters that can be used to group out specific pixel characteristics. The QA Bit Values will group the Landsat pixels as belonging to .  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).
 
 <p align="center">
-    <table style="width:75%" align="center">
-    <tr>
-        <th align="left">Bit</th>
-        <th align="left">Bit Value</th>
-        <th align="left">Cumulative Sum</th>
-        <th align="left">Attribute</th>
-    </tr>
-    <tr>
-        <td>0</td>
-        <td>1</td>
-        <td>1</td>
-        <td>Dark dense vegetation</td>
-    </tr>
-    <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-        <td>Cloud</td>
-    </tr>
-    <tr>
-        <td>2</td>
-        <td>4</td>
-        <td>7</td>
-        <td>Cloud shadow</td>
-    </tr>
-    <tr>
-        <td>3</td>
-        <td>8</td>
-        <td>15</td>
-        <td>Adjacent to cloud</td>
-    </tr>
-    <tr>
-        <td>4</td>
-        <td>16</td>
-        <td>31</td>
-        <td>Snow</td>
-    </tr>
-    <tr>
-        <td>5</td>
-        <td>32</td>
-        <td>63</td>
-        <td>Water</td>
-    </tr>
-    <tr>
-        <td>6</td>
-        <td>64</td>
-        <td>127</td>
-        <td>Unused</td>
-    </tr>
-    <tr>
-        <td>7</td>
-        <td>128</td>
-        <td>255</td>
-        <td>Unused</td>
-    </tr>
-    </table>
+<tr class="dd-bitmask-row"><td class="mdl-data-table__cell--non-numeric" colspan="4"><ul><li>Bit 0: Fill</li><ul></ul><li>Bit 1: Clear</li><ul></ul><li>Bit 2: Water</li><ul></ul><li>Bit 3: Cloud Shadow</li><ul></ul><li>Bit 4: Snow</li><ul></ul><li>Bit 5: Cloud</li><ul></ul><li>Bits 6-7: Cloud Confidence</li><ul><li> 0: None </li><li> 1: Low </li><li> 2: Medium </li><li> 3: High </li></ul><li>Bits 8-9: Cirrus Confidence</li><ul><li> 0: None </li><li> 1: Low </li><li> 2: Medium </li><li> 3: High </li></ul><li>Bit 10: Terrain Occlusion</li><ul></ul></ul></td></tr>
 </p>
 
 **Vegetation and Water Index**: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
