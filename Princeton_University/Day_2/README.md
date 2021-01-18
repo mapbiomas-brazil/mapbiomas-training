@@ -12,7 +12,7 @@
 
 `Vegetation and Water Index`: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
 
-![NDVI](https://sentera.com/wp-content/uploads/2017/05/NDVI-Values-and-Plant-Health-e1494875563338.png)
+![NDVI](./Assets/NDVI-Values-and-Plant-Health.png)
 
 # 1. Creating a mosaic
 
