@@ -19,10 +19,6 @@
 
 **Landsat Bit Values**: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'bit value' QA Bands. The bit values are a digital parameters that can be used to group out specific pixel characteristics. The QA Bit Values will group the Landsat pixels as belonging to .  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).
 
-<!-- <p align="center">
-<tr class="dd-bitmask-row"><td class="mdl-data-table__cell--non-numeric" colspan="4"><ul><li>Bit 0: Fill</li><ul></ul><li>Bit 1: Clear</li><ul></ul><li>Bit 2: Water</li><ul></ul><li>Bit 3: Cloud Shadow</li><ul></ul><li>Bit 4: Snow</li><ul></ul><li>Bit 5: Cloud</li><ul></ul><li>Bits 6-7: Cloud Confidence</li><ul><li> 0: None </li><li> 1: Low </li><li> 2: Medium </li><li> 3: High </li></ul><li>Bits 8-9: Cirrus Confidence</li><ul><li> 0: None </li><li> 1: Low </li><li> 2: Medium </li><li> 3: High </li></ul><li>Bit 10: Terrain Occlusion</li><ul></ul></ul></td></tr>
-</p> -->
-
 <div align=center>
     <table class="table table-striped">
         <caption>
@@ -97,39 +93,9 @@
                 <td>1023</td>
             </tr>
             <tr>
-                <td>10</td>
-                <td>1024</td>
-                <td>2047</td>
-                <td>Unused</td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>2048</td>
-                <td>4095</td>
-                <td>Unused</td>
-            </tr>
-            <tr>
-                <td>12</td>
-                <td>4096</td>
-                <td>8191</td>
-                <td>Unused</td>
-            </tr>
-            <tr>
-                <td>13</td>
-                <td>8192</td>
-                <td>16383</td>
-                <td>Unused</td>
-            </tr>
-            <tr>
-                <td>14</td>
-                <td>16384</td>
-                <td>32767</td>
-                <td>Unused</td>
-            </tr>
-            <tr>
-                <td>15</td>
-                <td>32786</td>
-                <td>65553</td>
+                <td>10-15</td>
+                <td>-</td>
+                <td>-</td>
                 <td>Unused</td>
             </tr>
         </tbody>
