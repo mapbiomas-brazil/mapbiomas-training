@@ -19,20 +19,63 @@
 
 **Landsat Bit Values**: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'bit value' QA Bands. The bit values are a digital parameters that can be used to group out specific pixel characteristics. The QA Bit Values will group the Landsat pixels as belonging to .  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).
 
-| Bit | Bit Value | Cumulative Sum | Attribute |
-|---|---|---|---|
-|  0|  1|  1|Dark dense vegetation|
-|  1|  2|  3|Cloud|
-|  2|  4|  7|Cloud shadow|
-|  3|  8| 15|Adjacent to cloud|
-|  4| 16| 31|Snow|
-|  5| 32| 63|Water|
-|  6| 64|127|Unused|
-|  7|128|255|Unused|
-||||
-
 <p align="center">
-    <img src="https://smbyc.github.io/CloudMasking/img/filter_cloud_qa_bits.png" alt="drawing" width="500"/>
+    <table style="width:70%">
+    <tr>
+        <th>Bit</th>
+        <th>Bit Value</th>
+        <th>Cumulative Sum</th>
+        <th>attribute</th>
+    </tr>
+    <tr>
+        <td>0</td>
+        <td>1</td>
+        <td>1</td>
+        <td>Dark dense vegetation</td>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>Cloud</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>4</td>
+        <td>7</td>
+        <td>Cloud shadow</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>8</td>
+        <td>15</td>
+        <td>Adjacent to cloud</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>16</td>
+        <td>31</td>
+        <td>Snow</td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>32</td>
+        <td>63</td>
+        <td>Water</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>64</td>
+        <td>127</td>
+        <td>Unused</td>
+    </tr>
+    <tr>
+        <td>7</td>
+        <td>128</td>
+        <td>255</td>
+        <td>Unused</td>
+    </tr>
+    </table>
 </p>
 
 **Vegetation and Water Index**: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
