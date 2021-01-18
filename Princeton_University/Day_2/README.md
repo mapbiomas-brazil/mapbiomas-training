@@ -303,23 +303,30 @@ print('collection with indexes:', collectionWithoutClouds);
 ## 1.8 Make the median, minimum and maximum mosaics
 
 ```javascript
-// Reduce collection to median, minimum and maximum values
-var median = collectionWithIndexes.reduce(ee.Reducer.median());
-var minimum = collectionWithIndexes.reduce(ee.Reducer.min());
-var maximum = collectionWithIndexes.reduce(ee.Reducer.max());
+// Reduce the ee.imageCollection to an ee.Image and apply the functions: computeNDVI, computeNDWI and computeEVI.
+var collectionWithIndexes_median = collectionWithoutClouds.median();
+var collectionWithIndexes_min = collectionWithoutClouds.reduce(ee.Reducer.min())
+var collectionWithIndexes_max = collectionWithoutClouds.reduce(ee.Reducer.max())
+
+var mosaic = collectionWithIndexes_median.addBands(collectionWithIndexes_min).addBands(collectionWithIndexes_max)
+
+// Merges the median, minimum and maximum mosaics
+mosaic = computeNDVI(collectionWithIndexes)
+mosaic = computeNDWI(collectionWithIndexes)
+mosaic = computeEVI(collectionWithIndexes)
 
 // Sets a visualization parameter object to NDVI median
-var visNdviIndex = {
-    bands: ['ndvi_median'],
+var visNdvi = {
+    bands: ['ndvi'],
     min: 0,
     max: 1,
     palette: 'ff0000,ffff00,00aa00',
     format: 'png'
 };
 
-Map.addLayer(median, visNdviIndex, 'median mosaic');
+//Reduced Collection
+Map.addLayer(mosaic, visNdvi, 'Cloud free + Indexes');
 
-print('median mosaic:', median);
 ```
 ![Reduce to median](./Assets/median-mosaic.png)
 [Link](https://code.earthengine.google.com/6b9b9d6d31a8be09db150d6ac6c69be8)
@@ -348,4 +355,4 @@ Export.image.toAsset({
     maxPixels: 1e13
 });
 ```
-[Link](https://code.earthengine.google.com/1caff5e2638bde18ad221d2c4bac80f8)
+[Link](https://code.earthengine.google.com/b53c7e233008c606c84ea5d2e6ad915b)
