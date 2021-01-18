@@ -114,7 +114,7 @@ var trainedSamples = mosaic.reduceRegions({
 print(trainedSamples);
 ```
 
-:heavy_exclamation_mark: Observe o console e veja que, além da propriedade `class`, os pontos possuem agora o valor do pixel em cada banda do mosaico.
+:heavy_exclamation_mark: Observe o console e veja que, além da propriedade `class`, os pontos possuem agora o valor do pixel de cada banda do mosaico.
 
 ![samples](./Assets/trained-samples.png)
 
