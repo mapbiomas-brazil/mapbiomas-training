@@ -39,7 +39,7 @@ print('Initial collection:', collection);
 ```
 [Link](https://code.earthengine.google.com/11a7b5b5aea57c3e335d80cceea93ff4)
 
-O resultado é a impressão no console de informações sobre a coleção filtrada.
+The result of the filtered collection is shown on the console.
 
 ![console](./Assets/console-information.png)
 
@@ -112,7 +112,7 @@ var cloudMasking = function (image) {
     return image.mask(cloudMask);
 };
 ```
-:question: What exactly is the line 110 doing?: "bitwiseAnd(Math.pow(2, 5)).not"
+:question: What exactly is the line 110 doing? "bitwiseAnd(Math.pow(2, 5)).not"
 
 ### 1.6.2 Apply the cloud masking function to each image
 
