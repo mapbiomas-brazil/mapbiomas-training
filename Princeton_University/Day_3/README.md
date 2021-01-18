@@ -123,10 +123,12 @@ Observe o console e veja que, além da propriedade `class`, os pontos possuem ag
 ## 2.5. Training the Random Forest classifier
 
 ```javascript
+// Set up the Random Forest classifier
 var classifier = ee.Classifier.smileRandomForest({
     'numberOfTrees': 50
 });
 
+// Training the classifier
 classifier = classifier.train({
     'features': trainedSamples, 
     'classProperty': 'class', 
@@ -159,5 +161,24 @@ classifier = classifier.train({
         'ndwi_median',
         'ndwi_min',
     ]
-    })
+    });
 ```
+[Link](https://code.earthengine.google.com/98f19e617c7ff534db890cff5a3d072e)
+
+## 2.6. Run the classifier
+
+```javascript
+// Run the Random Forest classifier
+var classification = mosaic.classify(classifier);
+
+// Add classification to map
+Map.addLayer(classification, {
+        'min': 0,
+        'max': 3,
+        'palette': 'ffffff,00ff00,ff0000,0000ff',
+        'format': 'png'
+    },
+    'classification'
+);
+```
+[Previous: Day 2 - Accessing Satellite Images and Creating Mosaics](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_2/README.md) | [Next: Day 4 - Spatial filter, Temporal Filter and Area Calculation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_4/README.md)
