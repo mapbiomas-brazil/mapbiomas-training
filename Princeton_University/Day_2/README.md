@@ -107,11 +107,12 @@ var cloudMasking = function (image) {
 
     var qaBand = image.select(['pixel_qa']);
 
-    var cloudMask = qaBand.bitwiseAnd(Math.pow(2, 5)).not(); //What exactly is this "bitwiseAnd(Math.pow(2, 5)).not"
+    var cloudMask = qaBand.bitwiseAnd(Math.pow(2, 5)).not(); 
 
     return image.mask(cloudMask);
 };
 ```
+:question: What exactly is the line 110 doing?: "bitwiseAnd(Math.pow(2, 5)).not"
 
 ### 1.6.2 Apply the cloud masking function to each image
 
