@@ -114,7 +114,7 @@ var trainedSamples = mosaic.reduceRegions({
 print(trainedSamples);
 ```
 
-Observe o console e veja que, além da propriedade `class`, os pontos possuem agora o valor do pixel em cada banda do mosaico.
+:heavy_exclamation_mark: Observe o console e veja que, além da propriedade `class`, os pontos possuem agora o valor do pixel em cada banda do mosaico.
 
 ![samples](./Assets/trained-samples.png)
 
@@ -175,10 +175,14 @@ var classification = mosaic.classify(classifier);
 Map.addLayer(classification, {
         'min': 0,
         'max': 3,
-        'palette': 'ffffff,00ff00,ff0000,0000ff',
+        'palette': 'ffffff,00aa00,ff0000,0000ff',
         'format': 'png'
     },
     'classification'
 );
 ```
+
+![samples](./Assets/classification.png)
+[Link](https://code.earthengine.google.com/69f685ee6b0426a5c27ac5007bc4670b)
+
 [Previous: Day 2 - Accessing Satellite Images and Creating Mosaics](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_2/README.md) | [Next: Day 4 - Spatial filter, Temporal Filter and Area Calculation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_4/README.md)
