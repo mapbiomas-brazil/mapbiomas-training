@@ -4,10 +4,18 @@
     <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
 </div>
 
+# Concepts of the Day
+
+Mosaic: A mosaic is a combination or merging of two or more matrices. Any given mosaic can be a multiband or single-band mosaic. The MapBiomas project works with the concept of multiband mosaics.
+
+Landsat Bit Values: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'pixel value' of certain digital products. The bit values are a digital parameters that can be used to group out specific pixel characteristics.  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).  
+
+Vegetation and Water Index: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
+
 # 1. Creating a mosaic
 
 ## 1.1 Creating a region of interest (ROI)
-For this example, we need to define a region of interest using the geometry editing panel of the code editor interface. Open the code editor, click on the "draw a shape" button ![draw a shape](./Assets/drawing-1.png) and draw a polygon anywhere in the planet. Be careful not to create a large polygon, as this may delay the execution of this tutorial. In this example, we will change the name of the geometry to  `roi`. 
+For this example, we need to define a region of interest using the geometry editing panel on code editor interface. Open the code editor, click on the "draw a shape" button and draw a polygon anywhere in the planet. Be careful not to draw a too large extension, try something around 100km x 100km. The processing of large extensions may delay the execution of this tutorial. In this example, we will change the name of the geometry to  `roi`. 
 
 ![ROI](./Assets/roi.png)
 [Link](https://code.earthengine.google.com/1e15221cf1d601e3d1a881b11421a062)
@@ -36,7 +44,7 @@ O resultado é a impressão no console de informações sobre a coleção filtra
 ![console](./Assets/console-information.png)
 
 ## 1.3 Filtering by cloud cover percentage
-Podemos filtrar as imagens de uma coleção usando qualquer informação contida no metadado das imagens. Neste exemplo, vamos utilizar a propriedade `CLOUD_COVER`. Esta propriedade armazena o percentual de cobertura de nuvens detectado pelo algoritmo do USGS.
+We can filter the images inside an Image Collection using any information contained in the image's metadata. In this example, we will use the `CLOUD_COVER` property. This property stores the percentage of cloud cover detected by the USGS algorithm.
 ```javascript
 // Filter images with less than 50% of cloud cover
 collection = collection
@@ -49,7 +57,8 @@ print('Images with less than 50% of cloud cover:', collection);
 
 ## 1.4 Selecting bands
 
-Vamos utilizar neste exemplo as bandas `blue, green, red, nir, swir 1 e swir 2` que estão respectivamente nomeadas como `B2, B3, B4, B5, B6, B7`. É necessário selecionar a banda de qualidade também `pixel_qa`, pois vamos utiliza-lá mais adiante para remover as nuvens.
+In this example we will use the bands `blue, green, red, nir, swir 1 and swir 2` which are respectively named` B2, B3, B4, B5, B6, B7`. It is necessary to select the quality band also, `pixel_qa`, as it will be used later to remove the clouds and shadows.
+
 ```javascript
 var bandNames = ['B2','B3','B4','B5','B6','B7','pixel_qa'];
 
@@ -62,7 +71,7 @@ print('Images with selected bands:', collection);
 [Link](https://code.earthengine.google.com/f7c1d2d42402f418ad24082387298413)
 
 ## 1.5 Adding data to map
-Vamos dar uma olhada no mapa e ver como está a nossa coleção. Neste momento, ainda temos as imagens com nuvens. Podemos utilizar o `inspector` para checar os valores dos pixels das imagens. Faça a sua inspeção!
+Let's take a look in our selection and see how our collection is visually represented. Right now, we still have cloud pixels inseid our 'roi'. We can use the `inspector` to check the pixel values of the images. Do your inspection!!
 
 ```javascript
 // Set a visualization parameters object
@@ -79,7 +88,7 @@ Map.addLayer(collection, visParams, 'collection');
 [Link](https://code.earthengine.google.com/577ed08b58ab11c50ecbf0644d486468)
 
 ## 1.6 Removing clouds
-Vamos mostrar aqui uma forma simples para remover as nuvens das imagens Landsat. Está técnica é bem simples e deve ser combinada com outros algoritmos mais complexos para gerar um resultado melhor.
+Here we are going to show a simple way to remove clouds from Landsat images. This technique is very simple and must be combined with other more complex algorithms to generate a better result.
 
 ### 1.6.1 Define a cloud masking function
 
@@ -98,7 +107,7 @@ var cloudMasking = function (image) {
 
     var qaBand = image.select(['pixel_qa']);
 
-    var cloudMask = qaBand.bitwiseAnd(Math.pow(2, 5)).not();
+    var cloudMask = qaBand.bitwiseAnd(Math.pow(2, 5)).not(); //What exactly is this "bitwiseAnd(Math.pow(2, 5)).not"
 
     return image.mask(cloudMask);
 };
@@ -241,5 +250,3 @@ Export.image.toAsset({
 });
 ```
 [Link](https://code.earthengine.google.com/730cbb39b8171afb16e62220c5cf5678)
-
-[Previous: Day 1 - MapBiomas presentation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_1/README.md) | [Next: Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_3/README.md)
