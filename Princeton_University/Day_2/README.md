@@ -22,7 +22,7 @@
 <div align=center>
     <table class="table table-striped">
         <caption>
-            <h3><strong>Landsat Surface Reflectance-Derived Spectral Indices Pixel Quality Band: Landsat 8</strong></h3>
+            <h4><strong>Landsat Surface Reflectance-Derived Spectral Indices Pixel Quality Band: Landsat 8</strong></h4>
         </caption>
         <thead>
             <tr style="background-color:grey;font-size:12px;">
