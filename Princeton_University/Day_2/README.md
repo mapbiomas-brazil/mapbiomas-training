@@ -241,3 +241,5 @@ Export.image.toAsset({
 });
 ```
 [Link](https://code.earthengine.google.com/730cbb39b8171afb16e62220c5cf5678)
+
+[Previous: Day 1 - MapBiomas presentation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_1/README.md) | [Next: Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_3/README.md)

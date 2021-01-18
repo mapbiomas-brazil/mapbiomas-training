@@ -9,3 +9,5 @@ The Mapbiomas Project consists of a collaborative network of specialists in the 
 
 # Day 1: MapBiomas presentation (by Tasso Azevedo)
 link:
+
+[Next: Day 2 - Accessing Satellite Images and Creating Mosaics](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_2/README.md)
