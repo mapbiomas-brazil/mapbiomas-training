@@ -6,11 +6,11 @@
 
 # Concepts of the Day
 
-Mosaic: A mosaic is a combination or merging of two or more matrices. Any given mosaic can be a multiband or single-band mosaic. The MapBiomas project works with the concept of multiband mosaics.
+*Mosaic*: A mosaic is a combination or merging of two or more matrices. Any given mosaic can be a multiband or single-band mosaic. The MapBiomas project works with the concept of multiband mosaics.
 
-Landsat Bit Values: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'pixel value' of certain digital products. The bit values are a digital parameters that can be used to group out specific pixel characteristics.  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).  
+*Landsat Bit Values*: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'pixel value' of certain digital products. The bit values are a digital parameters that can be used to group out specific pixel characteristics.  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).  
 
-Vegetation and Water Index: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
+*Vegetation and Water Index*: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
 
 # 1. Creating a mosaic
 
