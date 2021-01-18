@@ -17,7 +17,19 @@
     <img src="./Assets/mosaic-2.jpeg" alt="drawing" width="500"/>
 </p>
 
-**Landsat Bit Values**: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'bit value' QA Bands. The bit values are a digital parameters that can be used to group out specific pixel characteristics. The QA Bit Values will group the Landsat pixels as belonging to .  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).  
+**Landsat Bit Values**: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'bit value' QA Bands. The bit values are a digital parameters that can be used to group out specific pixel characteristics. The QA Bit Values will group the Landsat pixels as belonging to .  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).
+
+| Bit | Bit Value | Cumulative Sum | Attribute |
+|---|---|---|---|
+|  0|  1|  1|Dark dense vegetation|
+|  1|  2|  3|Cloud|
+|  2|  4|  7|Cloud shadow|
+|  3|  8| 15|Adjacent to cloud|
+|  4| 16| 31|Snow|
+|  5| 32| 63|Water|
+|  6| 64|127|Unused|
+|  7|128|255|Unused|
+||||
 
 **Vegetation and Water Index**: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
 
