@@ -348,4 +348,4 @@ Export.image.toAsset({
     maxPixels: 1e13
 });
 ```
-[Link](https://code.earthengine.google.com/730cbb39b8171afb16e62220c5cf5678)
+[Link](https://code.earthengine.google.com/1caff5e2638bde18ad221d2c4bac80f8)
