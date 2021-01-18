@@ -116,7 +116,9 @@ print(trainedSamples);
 
 :heavy_exclamation_mark: Observe o console e veja que, além da propriedade `class`, os pontos possuem agora o valor do pixel de cada banda do mosaico.
 
-![samples](./Assets/trained-samples.png)
+<p align="center">
+    <img src="./Assets/trained-samples.png" alt="drawing" width="400"/>
+</p>
 
 [Link](https://code.earthengine.google.com/db2b9bff4e672fc6f078e3aa6f170383)
 
