@@ -20,12 +20,12 @@
 **Landsat Bit Values**: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'bit value' QA Bands. The bit values are a digital parameters that can be used to group out specific pixel characteristics. The QA Bit Values will group the Landsat pixels as belonging to .  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).
 
 <p align="center">
-    <table style="width:70%">
+    <table style="width:75%" align="center">
     <tr>
-        <th>Bit</th>
-        <th>Bit Value</th>
-        <th>Cumulative Sum</th>
-        <th>attribute</th>
+        <th align="left">Bit</th>
+        <th align="left">Bit Value</th>
+        <th align="left">Cumulative Sum</th>
+        <th align="left">Attribute</th>
     </tr>
     <tr>
         <td>0</td>
