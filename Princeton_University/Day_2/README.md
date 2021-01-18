@@ -25,14 +25,14 @@
             <h3><strong>Landsat Surface Reflectance-Derived Spectral Indices Pixel Quality Band: Landsat 8</strong></h3>
         </caption>
         <thead>
-            <tr>
+            <tr style="background-color:grey;font-size:12px;">
                 <th scope="col">Bit</th>
                 <th scope="col">Value</th>
                 <th scope="col">Cumulative Sum</th>
                 <th scope="col">Interpretation</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody style="font-size:12px;">
             <tr>
                 <td>0</td>
                 <td>1</td>
