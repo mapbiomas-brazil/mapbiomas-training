@@ -19,6 +19,10 @@
 
 **Landsat Bit Values**: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'bit value' QA Bands. The bit values are a digital parameters that can be used to group out specific pixel characteristics. The QA Bit Values will group the Landsat pixels as belonging to .  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).  
 
+<p align="center">
+    <img src="https://smbyc.github.io/CloudMasking/img/filter_cloud_qa_bits.png" alt="drawing" width="500"/>
+</p>
+
 **Vegetation and Water Index**: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
 
 <p align="center">
