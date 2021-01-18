@@ -8,13 +8,13 @@
 
 `Mosaic`: A mosaic is a combination or merging of two or more matrices. Any given mosaic can be a multiband or single-band mosaic. The MapBiomas project works with the concept of multiband mosaics.
 
-![mosaic](./Assets/mosaic-2.jpeg)
+<img src="./Assets/mosaic-2.jpeg" alt="drawing" width="500"/>
 
 `Landsat Bit Values`: The Landsat satellites are a family of distinct satellite missions. Each family has its digital characteristics, one of which is the 'bit value' QA Bands. The bit values are a digital parameters that can be used to group out specific pixel characteristics. The QA Bit Values will group the Landsat pixels as belonging to .  Note: Numerically speaking, any number in our screen is originally a binary number (0 or 1).  
 
 `Vegetation and Water Index`: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
 
-![ndvi](./Assets/NDVI-Values-and-Plant-Health.png)
+<img src="./Assets/NDVI-Values-and-Plant-Health.png" alt="drawing" width="500"/>
 
 # 1. Creating a mosaic
 
