@@ -116,7 +116,7 @@ var cloudMasking = function (image) {
     return image.mask(cloudMask);
 };
 ```
-:question: What exactly is the line 110 doing? "bitwiseAnd(Math.pow(2, 5)).not"
+:question: What exactly is `bitwiseAnd()` function doing?
 
 ### 1.6.2 Apply the cloud masking function to each image
 
