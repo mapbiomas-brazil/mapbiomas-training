@@ -11,10 +11,14 @@
     <img src="./Assets/random-forest.jpeg" alt="drawing" width="500"/>
 </p>
 
-Want more details, check this Youtube Video: [StatQuest - Random Forest](https://youtu.be/J4Wdy0Wc_xQ)
+If you want more details, check this Youtube Video: [StatQuest - Random Forest](https://youtu.be/J4Wdy0Wc_xQ)
+
+**Variability**: Generally speaking, variability is how spread out or closely clustered a set of data is. In this sense, when capturing samples to train a supervised algorithm, the variability concept must always be in our minds. Let's think of beaches along a coastline; 
+
+A beach is most often a white and shiny sand surface, but that is not always true. Along the US or Brazil coasts, there are variations of this pattern. The geochemistry of sediments, humidity levels, and geological origin are all variables that influence the beach's spectral patterns.  A good classifier must be capable of capturing such variability.
 
 # 2. Classification using Random Forest
-Nesta sessão vamos aprender a carregar uma imagem, coletar amostras, treinar um modelo random forest e executar a classifiação.
+In this session we will learn how to load an image, collect samples, train a random forest model and perform the classification.
 
 ## 2.1. Load data from asset
 
@@ -52,18 +56,20 @@ Map.centerObject(mosaic, 9);
 ## 2.2. Collect manual samples
 ### 2.2.1. Create a feature collection
 
-Neste exemplo, vamos mapear três classes: `vegetação, não vegetação e água`. Para isso, é necessário coletar amostras para cada uma das classes. Utilizando a ferramenta de edição de polígonos do code editor ![edit-tool](./Assets/edit-tool.png), vamos criar três conjuntos de geometrias do tipo `polígono` e importá-las como `FeatureCollection`. Também vamos dar nome para cada conjunto de geometrias. O script está preparado para aceitar os nomes: `vegetation`, `notVegetation` e `water`. Em cada conjunto será adicionado uma propriedade chamada `class` que receberá valor 1, 2 ou 3 para vegetation, notVegetation e water respectivamente. Vocês poderão escolher uma cor de referência para cada classe também. Veja a figura abaixo mostrando o painel de configurações das geometrias:
+In this example, we will classify three land cover classes: `vegetation, not vegetation and water`. For this, it is necessary to collect samples for each class. Using the code editor's shape editing tool ![edit-tool](./Assets/edit-tool.png), we will create three sets of `polygons` and import them as` FeatureCollection`. We will also add a name for each set of geometries. 
+
+The script is prepared to accept the names: `vegetation`,` notVegetation` and `water`. In each set, a property called `class` will be added that will receive a value of 1, 2 or 3 for vegetation, notVegetation and water respectively. You can choose a reference color for each class. See the figure below:
 
 ![load image](./Assets/create-feature-collection.png)
 
-A coleta das amostras resulta em um conjunto de polígonos semelhante ao que vemos na figura abaixo:
+Sample collection results in a set of polygons similar to what we see in the next figure:
 
 ![samples](./Assets/samples.png)
 [Link](https://code.earthengine.google.com/18babe6933e054bc7dbc357c255d27b5)
 
 ## 2.3. Generate random points
 
-Após a coleta das amostras em formato de polígono, precisamos gerar pontos aleatórios dentro dessas regiões. Isso nos ajuda a ter maior diversidade de amostras. Nesta sessão, apresentamos uma função para coletar os pontos aleatórios dentro dos polígonos que nós desenhamos. 
+After collecting samples, we need to generate random points within these regions. The proper distribution of the sampling polygons, plus the random distribution inside it, helps us capture the class variability. In this session, we present a function to distribute random points within the polygons defined earlier.
 
 ```javascript
 // Create a function to collect random point inside the polygons
@@ -86,7 +92,7 @@ var generatePoints = function(polygons, nPoints){
 };
 ```
 
-Em seguida, usamos essa função para coletar os pontos em cada grupo de polígonos criado. Observe que a função recebe dois argumentos: `polygons` e `nPoints`. Estes argumentos são respectivamente os `polígonos desenhados` e o `número de pontos que desejamos coletar`. Existe outras formas mais precisas para definir a quantidade de pontos a ser coletados. Por exemplo, podemos definir o tamanho do conjunto de pontos usando como referência a proporção de área conhecida da sua região de interesse `roi`. O objetivo deste tutorial é mostrar uma abordagem introdutória e por isso estamos definindo empiricamente 100 pontos para `vegetation`, 100 pontos para `notVegetation` e 50 pontos para `water`.
+Then, we use this function to collect the points in each group of polygons created. Note that the function takes two arguments: `polygons` and` nPoints`. These arguments are the `drawn polygons` and the` number of points we want to collect.` There are other, more accurate ways to define the number of points to be collected. For example, we can determine the size of the set of points using as a reference the proportion of the known area of your region of interest `ROI`. The purpose of this tutorial is to show an introductory approach, and that is why we are empirically defining 100 points for `vegetation,` 100 points for` notVegetation`, and 50 points for `water.`
 
 ```javascript
 // Collect random points inside your polygons
@@ -97,7 +103,7 @@ var notVegetationPoints = generatePoints(notVegetation, 100);
 var waterPoints = generatePoints(water, 50);
 ```
 
-Para utilizar os pontos no treinamento do classificador é necessário unir os três conjuntos em uma única coleção.
+To use acquired points/samples as training data, it is necessary to join the three sets in a single collection.
 
 ```javascript
 // Merge all samples into a featureCollection
@@ -111,7 +117,7 @@ Map.addLayer(samples, {color: 'red'}, 'samples');
 
 ## 2.4. Collect the spectral information
 
-Uma vez que temos os pontos com as classes definidas, precisamos capturar a informação espectral dos píxeis que tocam os pontos.
+Once we have the samples for the defined classes, we need to capture the spectral information in its pixels 
 
 ```javascript
 // Collect the spectral information to get the trained samples
@@ -124,7 +130,7 @@ var trainedSamples = mosaic.reduceRegions({
 print(trainedSamples);
 ```
 
-:heavy_exclamation_mark: Observe o console e veja que, além da propriedade `class`, os pontos possuem agora o valor do pixel de cada banda do mosaico.
+:heavy_exclamation_mark: Now check the console, and besides the property `class`, the points/samples are presenting the pixel value of each band.
 
 <p align="center">
     <img src="./Assets/trained-samples.png" alt="drawing" width="400"/>
