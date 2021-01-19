@@ -195,7 +195,7 @@ Here we are going to show a simple way to remove clouds from Landsat images. Thi
  * @name
  *      cloudMasking
  * @description
- *      Removes clouds using the pixel_qa band
+ *      Removes clouds and shadows using the pixel_qa band
  * @argument
  *      ee.Image with pixel_qa band
  * @returns
@@ -205,9 +205,13 @@ var cloudMasking = function (image) {
 
     var qaBand = image.select(['pixel_qa']);
 
-    var cloudMask = qaBand.bitwiseAnd(Math.pow(2, 5)).not(); 
-
-    return image.mask(cloudMask);
+    var cloud = qaBand.bitwiseAnd(Math.pow(2, 5)).not(); 
+    var shadow = qaBand.bitwiseAnd(Math.pow(2, 3)).not(); 
+    
+    image = image.updateMask(cloud);
+    image = image.updateMask(shadow);
+    
+    return image;
 };
 ```
 :question: What exactly is `bitwiseAnd()` function doing?
@@ -223,18 +227,18 @@ print('Collection without clouds:', collectionWithoutClouds);
 ```
 
 ![Add data to map](./Assets/collection-without-clouds.png)
-[Link](https://code.earthengine.google.com/01842341e9e63e71523f9390611054b8)
+[Link](https://code.earthengine.google.com/3cc83b06172b6686942826fb268da298)
 
 ## 1.7 Calculate NDVI, EVI and NDWI for each image
 ### 1.7.1 Defining NDVI, EVI and NDWI functions
 ```javascript
 /**
  * @name
- *      getNDVI
+ *      computeNDVI
  * @description
  *      Calculates NDVI index
  */
-var getNDVI = function (image) {
+var computeNDVI = function (image) {
 
 	var exp = '( b("B5") - b("B4") ) / ( b("B5") + b("B4") )';
 
@@ -245,11 +249,11 @@ var getNDVI = function (image) {
 
 /**
  * @name
- *      getNDWI
+ *      computeNDWI
  * @description
  *      Calculates NDWI index
  */
-var getNDWI = function (image) {
+var computeNDWI = function (image) {
 
 	var exp = 'float(b("B5") - b("B6"))/(b("B5") + b("B6"))';
 
@@ -260,11 +264,11 @@ var getNDWI = function (image) {
 
 /**
  * @name
- *      getEVI
+ *      computeEVI
  * @description
  *      Calculates EVI index
  */
-var getEVI = function (image) {
+var computeEVI = function (image) {
 
 	var exp = '2.5 * ((b("B5") - b("B4")) / (b("B5") + 6 * b("B4") - 7.5 * b("B2") + 1))';
 
@@ -278,11 +282,11 @@ var getEVI = function (image) {
 ### 1.7.2 Apply the functions to each image
 
 ```javascript
-// For each image, applies the functions getNDVI, getNDWI and getEVI.
+// For each image, apply the functions computeNDVI, computeNDWI and computeEVI.
 var collectionWithIndexes = collectionWithoutClouds
-    .map(getNDVI)
-    .map(getNDWI)
-    .map(getEVI);
+    .map(computeNDVI)
+    .map(computeNDWI)
+    .map(computeEVI);
 
 // Sets a visualization parameter object to NDVI data
 var visNdvi = {
@@ -295,41 +299,20 @@ var visNdvi = {
 
 Map.addLayer(collectionWithIndexes, visNdvi, 'collection with indexes');
 
-print('collection with indexes:', collectionWithoutClouds);
+print('collection with indexes:', collectionWithIndexes);
 ```
 ![calculate indexes](./Assets/indexes.png)
-[Link](https://code.earthengine.google.com/85366a15f58cc21eb4a05ecf4a715a4b)
+[Link](https://code.earthengine.google.com/8926c3abed9bc742631de710664c70b2)
 
 ## 1.8 Make the median, minimum and maximum mosaics
 
 ```javascript
-// Reduce the ee.imageCollection to an ee.Image and apply the functions: computeNDVI, computeNDWI and computeEVI.
-var collectionWithIndexes_median = collectionWithoutClouds.median();
-var collectionWithIndexes_min = collectionWithoutClouds.reduce(ee.Reducer.min())
-var collectionWithIndexes_max = collectionWithoutClouds.reduce(ee.Reducer.max())
-
-var mosaic = collectionWithIndexes_median.addBands(collectionWithIndexes_min).addBands(collectionWithIndexes_max)
-
-// Merges the median, minimum and maximum mosaics
-mosaic = computeNDVI(collectionWithIndexes)
-mosaic = computeNDWI(collectionWithIndexes)
-mosaic = computeEVI(collectionWithIndexes)
-
-// Sets a visualization parameter object to NDVI median
-var visNdvi = {
-    bands: ['ndvi'],
-    min: 0,
-    max: 1,
-    palette: 'ff0000,ffff00,00aa00',
-    format: 'png'
-};
-
-//Reduced Collection
-Map.addLayer(mosaic, visNdvi, 'Cloud free + Indexes');
-
+// Generate median, minimum and maximum mosaics.
+var median = collectionWithoutClouds.reduce(ee.Reducer.median());
+var minimum = collectionWithoutClouds.reduce(ee.Reducer.min());
+var maximum = collectionWithoutClouds.reduce(ee.Reducer.max());
 ```
-![Reduce to median](./Assets/median-mosaic.png)
-[Link](https://code.earthengine.google.com/6b9b9d6d31a8be09db150d6ac6c69be8)
+[Link](https://code.earthengine.google.com/f8840aa6e6c4d3a3ce559828fc2597a9)
 
 ## 1.9 Make the final mosaic
 
@@ -337,9 +320,30 @@ Map.addLayer(mosaic, visNdvi, 'Cloud free + Indexes');
 // Merges the median, minimum and maximum mosaics
 var mosaic = median.addBands(minimum).addBands(maximum);
 
+// Sets a visualization parameter object to NDVI median
+var visNdvi = {
+    bands: ['ndvi_median'],
+    min: 0,
+    max: 1,
+    palette: 'ff0000,ffff00,00aa00',
+    format: 'png'
+};
+
+// Sets false color visualization parameter object
+var visFalseColor = {
+    bands: ['B6_median', 'B5_median', 'B4_median'],
+    gain: [0.08, 0.06, 0.2],
+    gamma: 0.85
+};
+
+// Add median mosaic to map
+Map.addLayer(mosaic, visFalseColor, 'False color');
+Map.addLayer(mosaic, visNdvi, 'NDVI median mosaic');
+
 print('final mosaic:', mosaic);
 ```
-[Link](https://code.earthengine.google.com/02f5deabea8edd04f52fa34b68dd00d7)
+![Reduce to median](./Assets/median-mosaic.png)
+[Link](https://code.earthengine.google.com/b8aba3015012ca8c28de81d9c8cbe9ec)
 
 ## 1.10 Export mosaic to GEE asset
 
@@ -355,4 +359,4 @@ Export.image.toAsset({
     maxPixels: 1e13
 });
 ```
-[Link](https://code.earthengine.google.com/b53c7e233008c606c84ea5d2e6ad915b)
+[Link](https://code.earthengine.google.com/f399447aecdb13329eb747e5ddd58214)
