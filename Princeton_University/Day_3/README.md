@@ -140,7 +140,7 @@ print(trainedSamples);
 
 ## 2.5. Training the Random Forest classifier
 
-Vamos utilizar a função `ee.Classifier.smileRandomForest()` para configurar o nosso modelo Random Forest. A documentação desta função nos ensina que podemos configurar o seguinte conjunto de parâmetros:
+We will use the `ee.Classifier.smileRandomForest()` function to configure our Random Forest model. The documentation for this function teaches us that we can configure the following set of parameters::
 
 **Arguments:**
 - **numberOfTrees (Integer)**: The number of decision trees to create.
