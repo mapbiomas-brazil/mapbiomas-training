@@ -7,7 +7,9 @@
 # Concepts of the Day
 **Random Forest**: Random Forest is a supervised classifier, made up of decision trees, which uses statistical concepts such as **randomness** and **majority** decision, to add more flexibility to the classifier.
 
-[ADD IMAGE]
+<p align="center">
+    <img src="./Assets/random-forest.jpeg" alt="drawing" width="500"/>
+</p>
 
 Want more details, check this Youtube Video: [StatQuest - Random Forest](https://youtu.be/J4Wdy0Wc_xQ)
 
@@ -45,7 +47,7 @@ Map.addLayer(mosaic, visParams, 'Mosaic');
 Map.centerObject(mosaic, 9);
 ```
 ![load image](./Assets/load-image.png)
-<a href="https://code.earthengine.google.com/a0651d74137aec7017cb6c027e17ddd9" target="_blank">Link</a>
+[Link](https://code.earthengine.google.com/a0651d74137aec7017cb6c027e17ddd9)
 
 ## 2.2. Collect manual samples
 ### 2.2.1. Create a feature collection
