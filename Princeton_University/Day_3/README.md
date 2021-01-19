@@ -5,6 +5,7 @@
 </div>
 # Concepts of the Day
 
+
 **Random Forest**: Random Forest is a supervised classifier, made up of decision trees, which uses statistical concepts such as **randomness** and **majority** decision, to add more flexibility to the classifier.
 
 # 2. Classification using Random Forest
