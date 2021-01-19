@@ -185,7 +185,7 @@ Map.addLayer(collection, visParams, 'collection');
 
 [Link](https://code.earthengine.google.com/577ed08b58ab11c50ecbf0644d486468)
 
-## 1.6 Removing clouds
+## 1.6 Removing clouds and shadows
 Here we are going to show a simple way to remove clouds from Landsat images. This technique is very simple and must be combined with other more complex algorithms to generate a better result.
 
 ### 1.6.1 Define a cloud masking function

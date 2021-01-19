@@ -39,7 +39,7 @@ Map.addLayer(collection, visParams, 'collection');
  * @name
  *      cloudMasking
  * @description
- *      Removes clouds using the pixel_qa band
+ *      Removes clouds and shadow using the pixel_qa band
  * @argument
  *      ee.Image with pixel_qa band
  * @returns
@@ -49,9 +49,13 @@ var cloudMasking = function (image) {
 
     var qaBand = image.select(['pixel_qa']);
 
-    var cloudMask = qaBand.bitwiseAnd(Math.pow(2, 5)).not();
+    var cloud = qaBand.bitwiseAnd(Math.pow(2, 5)).not();
+    var shadow = qaBand.bitwiseAnd(Math.pow(2, 3)).not();
 
-    return image.mask(cloudMask);
+    image = image.updateMask(cloud);
+    image = image.updateMask(shadow);
+
+    return image;
 };
 
 var collectionWithoutClouds = collection.map(cloudMasking);
@@ -60,11 +64,11 @@ Map.addLayer(collectionWithoutClouds, visParams, 'collection without clouds');
 
 /**
  * @name
- *      getNDVI
+ *      computeNDVI
  * @description
  *      Calculates NDVI index
  */
-var getNDVI = function (image) {
+var computeNDVI = function (image) {
 
     var exp = '( b("B5") - b("B4") ) / ( b("B5") + b("B4") )';
 
@@ -75,11 +79,11 @@ var getNDVI = function (image) {
 
 /**
  * @name
- *      getNDWI
+ *      computeNDWI
  * @description
  *      Calculates NDWI index
  */
-var getNDWI = function (image) {
+var computeNDWI = function (image) {
 
     var exp = 'float(b("B5") - b("B6"))/(b("B5") + b("B6"))';
 
@@ -90,11 +94,11 @@ var getNDWI = function (image) {
 
 /**
  * @name
- *      getEVI
+ *      computeEVI
  * @description
  *      Calculates EVI index
  */
-var getEVI = function (image) {
+var computeEVI = function (image) {
 
     var exp = '2.5 * ((b("B5") - b("B4")) / (b("B5") + 6 * b("B4") - 7.5 * b("B2") + 1))';
 
@@ -104,12 +108,13 @@ var getEVI = function (image) {
 
 };
 
-// For each image, applies the functions getNDVI, getNDWI and getEVI.
+// For each image, apply the functions computeNDVI, computeNDWI and computeEVI.
 var collectionWithIndexes = collectionWithoutClouds
-    .map(getNDVI)
-    .map(getNDWI)
-    .map(getEVI);
+    .map(computeNDVI)
+    .map(computeNDWI)
+    .map(computeEVI);
 
+// Sets a visualization parameter object to NDVI data
 var visNdvi = {
     bands: ['ndvi'],
     min: 0,
@@ -120,14 +125,18 @@ var visNdvi = {
 
 Map.addLayer(collectionWithIndexes, visNdvi, 'collection with indexes');
 
-print('collection with indexes:', collectionWithoutClouds);
+print('collection with indexes:', collectionWithIndexes);
 
-// For each image, applies the functions getNDVI, getNDWI and getEVI.
+// Generate median, minimum and maximum mosaics.
 var median = collectionWithIndexes.reduce(ee.Reducer.median());
 var minimum = collectionWithIndexes.reduce(ee.Reducer.min());
 var maximum = collectionWithIndexes.reduce(ee.Reducer.max());
 
-var visNdviIndex = {
+// Merges the median, minimum and maximum mosaics
+var mosaic = median.addBands(minimum).addBands(maximum);
+
+// Sets a visualization parameter object to NDVI median
+var visNdvi = {
     bands: ['ndvi_median'],
     min: 0,
     max: 1,
@@ -135,14 +144,16 @@ var visNdviIndex = {
     format: 'png'
 };
 
-Map.addLayer(median, visNdviIndex, 'median mosaic');
+// Sets false color visualization parameter object
+var visFalseColor = {
+    bands: ['B6_median', 'B5_median', 'B4_median'],
+    gain: [0.08, 0.06, 0.2],
+    gamma: 0.85
+};
 
-print('median mosaic:', median);
-
-// Merges the median, minimum and maximum mosaics
-var mosaic = median.addBands(minimum).addBands(maximum);
-
-print('final mosaic:', mosaic);
+// Add median mosaic to map
+Map.addLayer(mosaic, visFalseColor, 'False color');
+Map.addLayer(mosaic, visNdvi, 'NDVI median mosaic');
 
 // Export the mosaic to your asset
 Export.image.toAsset({
