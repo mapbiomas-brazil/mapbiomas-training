@@ -10,6 +10,8 @@ Nesta sessão vamos aprender a carregar uma imagem, coletar amostras, treinar um
 ## 2.1. Load data from asset
 
 ### 2.1.1. Load the mosaic as an ee.Image
+
+Para carregar o mosaico, usamos a função `ee.Image()`.
 ```javascript
 // Image asset id
 var imageId = "projects/mapbiomas/assets/mosaic-2020";
@@ -41,7 +43,7 @@ Map.centerObject(mosaic, 9);
 ## 2.2. Collect manual samples
 ### 2.2.1. Create a feature collection
 
-Neste exemplo, vamos mapear três classes: `vegetação, não vegetação e água`. Para isso, é necessário coletar amostras para cada uma das classes. Utilizando a ferramenta de edição de polígonos do code editor, vamos criar três conjuntos de geometrias do tipo `polígono` e importá-las como `FeatureCollection`. Também vamos adicionar um nome para cada conjunto de geometrias. O script está preparado para aceitar os nomes: `vegetation`, `notVegetation` e `water`. Em cada conjunto será adicionado uma propriedade chamada `class` que receberá valor 1, 2 ou 3 para vegetation, notVegetation e water respectivamente. Vocês poderão escolher uma cor de referência para cada class. Veja a figura abaixo mostrando o painel de configurações das geometrias:
+Neste exemplo, vamos mapear três classes: `vegetação, não vegetação e água`. Para isso, é necessário coletar amostras para cada uma das classes. Utilizando a ferramenta de edição de polígonos do code editor ![edit-tool](./Assets/edit-tool.png), vamos criar três conjuntos de geometrias do tipo `polígono` e importá-las como `FeatureCollection`. Também vamos dar nome para cada conjunto de geometrias. O script está preparado para aceitar os nomes: `vegetation`, `notVegetation` e `water`. Em cada conjunto será adicionado uma propriedade chamada `class` que receberá valor 1, 2 ou 3 para vegetation, notVegetation e water respectivamente. Vocês poderão escolher uma cor de referência para cada classe também. Veja a figura abaixo mostrando o painel de configurações das geometrias:
 
 ![load image](./Assets/create-feature-collection.png)
 
@@ -72,7 +74,6 @@ var generatePoints = function(polygons, nPoints){
     );
     
     return points;
-    
 };
 ```
 
@@ -124,12 +125,28 @@ print(trainedSamples);
 
 ## 2.5. Training the Random Forest classifier
 
+Vamos utilizar a função `ee.Classifier.smileRandomForest()` para configurar o nosso modelo Random Forest. A documentação desta função nos ensina que podemos configurar o seguinte conjunto de parâmetros:
+
+**Arguments:**
+- **numberOfTrees (Integer)**: The number of decision trees to create.
+- **variablesPerSplit (Integer, default: null)**: The number of variables per split. If unspecified, uses the square root of the number of variables.
+- **minLeafPopulation (Integer, default: 1)**: Only create nodes whose training set contains at least this many points.
+- **bagFraction (Float, default: 0.5)**: The fraction of input to bag per tree.
+- **maxNodes (Integer, default: null)**: The maximum number of leaf nodes in each tree. If unspecified, defaults to no limit.
+- **seed (Integer, default: 0)**: The randomization seed.
+
+Vamos configurar apenas a variável `numberOfTrees` neste exercício.
+
 ```javascript
 // Set up the Random Forest classifier
 var classifier = ee.Classifier.smileRandomForest({
     'numberOfTrees': 50
 });
+```
 
+O nosso modelo está configurado, mas ainda precisamos treiná-lo com os pontos de amostras que sorteamos. Nesta etapa usamos a função `train()` e receberá no mínimo três argumentos: `features`, `classProperties` e `inputProperties`. Em `features` inserimos a variável `trainedSamples` que armazena os nosso pontos contendo o valor da classe e o valor do pixel em todas as bandas. Definimos `classProperties` igual a 'class', pois é a propriedade que armazena o valor número da classe do ponto. Por fim, inserimos em `inputProperties` uma lista com os nomes das bandas que utilizaremos para treinar o classificador. Estamos utilizando todas as bandas de median, mínimo e máximo, mas fique a vontade para testar a combinação que desejar. Existe um método mais robusto para definir a relevância de cada banda dentro do modelo de treinamento do Random Forest. Isto fica como dever de casa!
+
+```javascript
 // Training the classifier
 classifier = classifier.train({
     'features': trainedSamples, 
@@ -168,6 +185,8 @@ classifier = classifier.train({
 [Link](https://code.earthengine.google.com/98f19e617c7ff534db890cff5a3d072e)
 
 ## 2.6. Run the classifier
+
+Para executar a classificação usamos a função `classify()` e passamos como argumento o modelo Random Forest treinado.
 
 ```javascript
 // Run the Random Forest classifier
