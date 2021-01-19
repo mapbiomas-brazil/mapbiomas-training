@@ -3,6 +3,9 @@
     <h1 class="title toc-ignore">MapBiomas Princeton Course</h1>
     <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
 </div>
+# Concepts of the Day
+
+**Random Forest**: Random Forest is a supervised classifier, made up of decision trees, which uses statistical concepts such as **randomness** and **majority** decision, to add more flexibility to the classifier.
 
 # 2. Classification using Random Forest
 Nesta sessão vamos aprender a carregar uma imagem, coletar amostras, treinar um modelo random forest e executar a classifiação.
