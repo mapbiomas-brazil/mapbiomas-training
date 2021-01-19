@@ -14,4 +14,4 @@ This training course aims to briefly explain and demonstrate the core GIS, Remot
 * [Day 4 - Spatial filter, Temporal Filter and Area Calculation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_4/README.md)
 * [Day 5 - Identifying Land Use and Land Cover Changes + Applications](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_5/README.md)
 
-![MapBiomas Flowchart](https://user-images.githubusercontent.com/68720032/105084744-8f7dec80-5a75-11eb-9fc4-527ec88966de.jpeg)
+![MapBiomas Flowchart](https://user-images.githubusercontent.com/68720032/105085821-0ff11d00-5a77-11eb-9793-642e4b126504.jpeg)
