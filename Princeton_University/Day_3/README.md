@@ -4,6 +4,13 @@
     <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
 </div>
 
+# Concepts of the Day
+**Random Forest**: Random Forest is a supervised classifier, made up of decision trees, which uses statistical concepts such as **randomness** and **majority** decision, to add more flexibility to the classifier.
+
+[ADD IMAGE]
+
+Want more details, check this Youtube Video: [StatQuest - Random Forest](https://youtu.be/J4Wdy0Wc_xQ)
+
 # 2. Classification using Random Forest
 Nesta sessão vamos aprender a carregar uma imagem, coletar amostras, treinar um modelo random forest e executar a classifiação.
 
