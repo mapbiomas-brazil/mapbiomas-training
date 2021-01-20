@@ -365,5 +365,21 @@ Export.image.toAsset({
 ```
 [Link](https://code.earthengine.google.com/f399447aecdb13329eb747e5ddd58214)
 
+## 1.11 Mosaic examples
+
+```javascript
+var imageId = "projects/mapbiomas/assets/africa-2020";
+var imageId = "projects/mapbiomas/assets/congo-2020";
+var imageId = "projects/mapbiomas/assets/miami-2020";
+var imageId = "projects/mapbiomas/assets/new-zeland-2020";
+var imageId = "projects/mapbiomas/assets/peru-2020";
+var imageId = "projects/mapbiomas/assets/puerto-rico-2020";
+var imageId = "projects/mapbiomas/assets/rondonia-brazil-2020";
+var imageId = "projects/mapbiomas/assets/san-francisco-2020";
+var imageId = "projects/mapbiomas/assets/santarem-brazil-2020";
+var imageId = "projects/mapbiomas/assets/sri-lanka-2020";
+var imageId = "projects/mapbiomas/assets/mosaic-2020";
+```
+
 [Previous: Day 1 - MapBiomas presentation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_1/README.md) | [Next: Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_3/README.md)
 
