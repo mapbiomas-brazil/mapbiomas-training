@@ -28,17 +28,18 @@ Use `ee.Image()` function to load the image mosaic.
 
 ```javascript
 // Choose an image asset id
-var imageId = "projects/mapbiomas/assets/mosaic-2020";
-// var imageId = "projects/mapbiomas/assets/africa-2020";
-// var imageId = "projects/mapbiomas/assets/congo-2020";
-// var imageId = "projects/mapbiomas/assets/miami-2020";
-// var imageId = "projects/mapbiomas/assets/new-zeland-2020";
-// var imageId = "projects/mapbiomas/assets/peru-2020";
-// var imageId = "projects/mapbiomas/assets/puerto-rico-2020";
-// var imageId = "projects/mapbiomas/assets/rondonia-brazil-2020";
-// var imageId = "projects/mapbiomas/assets/san-francisco-2020";
-// var imageId = "projects/mapbiomas/assets/santarem-brazil-2020";
-// var imageId = "projects/mapbiomas/assets/sri-lanka-2020";
+var imageId = "users/joaovsiqueira1/mapbiomas-course/mosaic-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/africa-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/congo-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/miami-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/new-zeland-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/peru-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/puerto-rico-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/rondonia-brazil-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/san-francisco-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/santarem-brazil-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/sri-lanka-2020";
+// var imageId = "users/joaovsiqueira1/mapbiomas-course/mosaic-2020";
 
 // Load as an image
 var mosaic = ee.Image(imageId);
