@@ -27,8 +27,18 @@ In this session we will learn how to load an image, collect samples, train a ran
 Use `ee.Image()` function to load the image mosaic.
 
 ```javascript
-// Image asset id
+// Choose an image asset id
 var imageId = "projects/mapbiomas/assets/mosaic-2020";
+// var imageId = "projects/mapbiomas/assets/africa-2020";
+// var imageId = "projects/mapbiomas/assets/congo-2020";
+// var imageId = "projects/mapbiomas/assets/miami-2020";
+// var imageId = "projects/mapbiomas/assets/new-zeland-2020";
+// var imageId = "projects/mapbiomas/assets/peru-2020";
+// var imageId = "projects/mapbiomas/assets/puerto-rico-2020";
+// var imageId = "projects/mapbiomas/assets/rondonia-brazil-2020";
+// var imageId = "projects/mapbiomas/assets/san-francisco-2020";
+// var imageId = "projects/mapbiomas/assets/santarem-brazil-2020";
+// var imageId = "projects/mapbiomas/assets/sri-lanka-2020";
 
 // Load as an image
 var mosaic = ee.Image(imageId);
