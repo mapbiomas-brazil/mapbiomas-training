@@ -308,9 +308,9 @@ print('collection with indexes:', collectionWithIndexes);
 
 ```javascript
 // Generate median, minimum and maximum mosaics.
-var median = collectionWithoutClouds.reduce(ee.Reducer.median());
-var minimum = collectionWithoutClouds.reduce(ee.Reducer.min());
-var maximum = collectionWithoutClouds.reduce(ee.Reducer.max());
+var median = collectionWithIndexes.reduce(ee.Reducer.median());
+var minimum = collectionWithIndexes.reduce(ee.Reducer.min());
+var maximum = collectionWithIndexes.reduce(ee.Reducer.max());
 ```
 [Link](https://code.earthengine.google.com/f8840aa6e6c4d3a3ce559828fc2597a9)
 
