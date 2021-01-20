@@ -24,7 +24,8 @@ In this session we will learn how to load an image, collect samples, train a ran
 
 ### 2.1.1. Load the mosaic as an ee.Image
 
-Para carregar o mosaico, usamos a função `ee.Image()`.
+Use `ee.Image()` function to load the image mosaic.
+
 ```javascript
 // Image asset id
 var imageId = "projects/mapbiomas/assets/mosaic-2020";
@@ -220,5 +221,22 @@ Map.addLayer(classification, {
 
 ![samples](./Assets/classification.png)
 [Link](https://code.earthengine.google.com/69f685ee6b0426a5c27ac5007bc4670b)
+
+## 2.7. Export classification to asset
+
+```javascript
+// Export the mosaic to your asset
+Export.image.toAsset({
+    image: classification, 
+    description: 'classification-2020', 
+    assetId: 'classification-2020', 
+    pyramidingPolicy: {'.default': 'mode'}, // use mode for classification data
+    region: classification.geometry(), 
+    scale: 30, 
+    maxPixels: 1e13
+});
+```
+
+[Link](https://code.earthengine.google.com/f8d9de8e8b0af476c7eb6402746d8e63)
 
 [Previous: Day 2 - Accessing Satellite Images and Creating Mosaics](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_2/README.md) | [Next: Day 4 - Spatial filter, Temporal Filter and Area Calculation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_4/README.md)
