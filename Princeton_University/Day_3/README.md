@@ -138,7 +138,9 @@ var trainedSamples = mosaic.reduceRegions({
     'reducer': ee.Reducer.first(), 
     'scale': 30,
   });
-  
+
+trainedSamples = trainedSamples.filter(ee.Filter.notNull(['B2_max']));
+
 print(trainedSamples);
 ```
 
