@@ -312,6 +312,10 @@ var median = collectionWithIndexes.reduce(ee.Reducer.median());
 var minimum = collectionWithIndexes.reduce(ee.Reducer.min());
 var maximum = collectionWithIndexes.reduce(ee.Reducer.max());
 ```
+<p align="center">
+    <img src="./Assets/median-scheme.jpeg" alt="drawing" width="500"/>
+</p>
+
 [Link](https://code.earthengine.google.com/f8840aa6e6c4d3a3ce559828fc2597a9)
 
 ## 1.9 Make the final mosaic
