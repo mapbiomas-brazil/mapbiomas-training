@@ -225,7 +225,7 @@ var classification = mosaic.classify(classifier);
 Map.addLayer(classification, {
         'min': 0,
         'max': 3,
-        'palette': 'ffffff,00aa00,ff0000,0000ff',
+        'palette': ['ffffff,00aa00,ff0000,0000ff'],
         'format': 'png'
     },
     'classification'
