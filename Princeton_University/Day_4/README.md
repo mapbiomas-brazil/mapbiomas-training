@@ -4,7 +4,6 @@
     <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
 </div>
 
-# Concepts of the Day
 
 # 3. Post-classification
 
@@ -39,6 +38,9 @@ Map.addLayer(classification, visClassification, 'Classification 2019');
 
 ### 3.1.2 Use the mapbiomas spatial filter code
 This step is not a simple process to do. Thus, here we will have a little more advanced code. The spatial filter aims to reclassify small groups of isolated pixels using information from neighboring pixels. The isolated pixels give the classification a noisy appearance, classically known as the "salt and pepper effect." This technique aims not to change the classification data significantly but to bring a subtle improvement to the final map. Let's study the code below.
+
+![Majority Filter](https://user-images.githubusercontent.com/11324805/105404971-5d04f880-5c09-11eb-836a-a93a4f2cc37e.jpeg)
+
 
 ```javascript
 /**
