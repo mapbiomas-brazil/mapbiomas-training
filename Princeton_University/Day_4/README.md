@@ -6,9 +6,10 @@
 
 # Concepts of the Day
 
-# 3. Post classification
+# 3. Post-classification
 
 ## 3.1 Spatial Filter
+### 3.1.1 Load data
 
 ```javascript
 // The asset name of classification data
@@ -36,7 +37,10 @@ Map.addLayer(classification, visClassification, 'Classification 2019');
 ![load-classification](./Assets/load-classification.png)
 [Link](https://code.earthengine.google.com/6dc68d4352fe954eef137c45bd452cee)
 
-```javascript {.line-numbers}"
+### 3.1.2 Use the mapbiomas spatial filter code
+Essa etapa não é um processo simples de se fazer, por isso teremos um código um pouco mais avançado aqui. O filtro espacial tem o objetivo de reclassificar pequenos grupos de pixels isolados usando a informação dos pixels vizinhos. Estes pixels isolados, em geral, passam pelo processo de rotulagem do classificador, mas por estarem num padrão espacial disperso acabam por não refletir o resultado esperado. O propósito desta técnica não é alterar o dado de classificação de uma forma significativa, mas trazer uma melhoria sútil ao mapa final. Vamos estudar o código abaixo.
+
+```javascript
 /**
  * Classe de pos-classificação para reduzir ruídos na imagem classificada
  * 
@@ -121,5 +125,42 @@ var PostClassification = function (image) {
 
 };
 ```
+[Link](https://code.earthengine.google.com/07a35e19beced17bad2935048a006f07)
+
+```javascript
+// Set a list of spatial filter parameters
+// classValue is the representative number of a class and maxSize is the maximum
+// size of pixels in a group that will be reclassified
+var filterParams = [
+    {classValue: 3, maxSize: 5},
+    {classValue: 15, maxSize: 5}, 
+    {classValue: 33, maxSize: 5}, 
+    {classValue: 19, maxSize: 5},
+];
+
+var pc = new PostClassification(classification);
+
+var filtered = pc.spatialFilter(filterParams);
+
+// Add image to map
+Map.addLayer(filtered.reproject('EPSG:4326', null, 30), visClassification, 'Filtered 2019');
+```
+<div align=center>
+    <caption>
+        <h4><strong>Classification before spatial filter</strong></h4>
+    </caption>
+    <p align="center">
+        <img src="./Assets/spatial-filter-before.png"/>
+    </p>
+    <caption>
+        <h4><strong>Classification after spatial filter</strong></h4>
+    </caption>
+    <p align="center">
+        <img src="./Assets/spatial-filter-after.png"/>
+    </p>
+</div>
+
+[Link](https://code.earthengine.google.com/1237c86837a94fcc549d9d3e1adf59bb)
+
 
 ## 3.2 Temporal Filter
