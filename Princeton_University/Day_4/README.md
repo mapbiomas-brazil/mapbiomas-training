@@ -372,7 +372,7 @@ Export.table.toDrive({
 })
 ```
 [Link](https://code.earthengine.google.com/2d5a555f54cec6bd734cb5bf20b6f27b)
-<\br>
+<h1 class="title toc-ignore"></h1>
 [Mapbiomas Toolkit Sources](https://github.com/mapbiomas-brazil/user-toolkit)
 
 ## 3.3 Calculate area for many regions
