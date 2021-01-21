@@ -242,10 +242,10 @@ var class2019 = classificationMultiBand.select(['34_classification_2019']);
 
 Agora precisamos criar algumas regras usando algebra de mapas. Vamos focar em três classes: `pasture`, `forest formation` and `agriculture`.
 
-Class ids:
-- forest formation: 3
-- pasture: 15
-- pasture: 19
+**Class ids:**
+- Forest formation: 3
+- Pasture: 15
+- Agriculture: 19
 
 See the mapbiomas documentation for more information about the legend.
 
@@ -256,7 +256,7 @@ var rule1 = class2017.eq(3).and(class2018.eq(15)).and(class2019.eq(3));
 // Find pixels where is pasture in 2017 and agriculture in 2018 and pasture in 2019
 var rule2 = class2017.eq(15).and(class2018.eq(19)).and(class2019.eq(15));
 
-// Reclassify 2018 forest noise using rule 1 and 2
+// Reclassify 2018 noise using rule 1 and 2
 var filtered2018 = class2018
     .where(rule1, 3)
     .where(rule2, 15);
@@ -279,7 +279,7 @@ var visClassification = {
 };
 ```
 
-Agora adicionamos ao mapa as classificações do ano 2018 antes e depois ao filtro temporal.
+Agora adicionamos ao mapa as classificações do ano 2018 antes e depois do filtro temporal.
 
 ```javascript
 // Add images to map
