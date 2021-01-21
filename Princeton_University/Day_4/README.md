@@ -316,7 +316,7 @@ Map projections are mathematical formulations designed to minimize possible dist
 
 ```javascript
 /**
- * Calculating the class area
+ * Calculate the class area
  * @param {ee.Image} img, {number} classID
  * @return {ee.Feature} feature with indentified metadata
 */
