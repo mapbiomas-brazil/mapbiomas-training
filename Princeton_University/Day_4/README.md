@@ -304,6 +304,10 @@ Map.addLayer(filtered2018, visClassification, 'Filtered 2018');
 [Link](https://code.earthengine.google.com/4bb33fe86977177b94e5b3ddac15e0f8)
 
 ## 3.3 Calculate area
+A spherical or quasi-spherical surface cannot be represented as a plan without some kind of distortions being associated with its representation. That is why the ***Cartographyc Projections*** exist!.
+Map projections are mathematical formulations designed to minimize possible distortions, this distortions can impact your area calculation. Because of this, in GEE, the strategy for calculating areas in a cartographically appropriated way is using a Lambert Azimuthal Equal Area (LAEA)  through the function: ee.Image.pixelArea, as presented in the image below.
+
+![area calculation](https://user-images.githubusercontent.com/11324805/105396510-bca9d680-5bfe-11eb-8657-31eb2f3b167d.png)
 
 ```
 /**
@@ -320,7 +324,7 @@ var areaPerClass =  function(img,classID){
   return ee.Feature(null,{'classId':classID,'area_m²':area.get('area')})
 }
 ```
-
+... how to use a multi-paramater function, and merge the feature results as a ***ee.FeatureCollection***
 ```
 var area_3 = areaPerClass(filtered2018,3);
 var area_12 = areaPerClass(filtered2018,15);
@@ -331,7 +335,7 @@ var area_33 = areaPerClass(filtered2018,33);
 var areaCollection = ee.FeatureCollection([area_3,area_12,area_15,area_19,area_25,area_33]) // This cast is important to export as a table
 print(areaCollection)
 ```
-
+Now, export to your google drive!.
 ```
 //Exporting...
 Export.table.toDrive({
