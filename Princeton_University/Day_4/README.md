@@ -318,13 +318,22 @@ Map projections are mathematical formulations designed to minimize possible dist
  * @param {ee.Image} img, {number} classID
  * @return {ee.Feature} feature with indentified metadata
 */
-var areaPerClass =  function(img,classID){
-  var area = img.rename('area').eq(classID).multiply(ee.Image.pixelArea()).reduceRegion({
-                                                                      reducer: ee.Reducer.sum(),
-                                                                      geometry: img.geometry(),
-                                                                      scale: 30,
-                                                                      maxPixels: 1e13})
-  return ee.Feature(null,{'classId':classID,'area_m²':area.get('area')})
+var areaPerClass =  function(img, classID){
+    var area = img
+        .rename('area')
+        .eq(classID)
+        .multiply(ee.Image.pixelArea())
+        .reduceRegion({
+            reducer: ee.Reducer.sum(),
+            geometry: img.geometry(),
+            scale: 30,
+            maxPixels: 1e13
+        });
+
+    return ee.Feature(null, {
+        'classId': classID,
+        'area_m2': area.get('area')
+    });
 }
 ```
 Use the function to calculate the classes areas and merge the each ee.Feature as a `ee.FeatureCollection`.
@@ -335,7 +344,17 @@ var area_15 = areaPerClass(filtered2018,15);
 var area_19 = areaPerClass(filtered2018,19);
 var area_25 = areaPerClass(filtered2018,25);
 var area_33 = areaPerClass(filtered2018,33);
-var areaCollection = ee.FeatureCollection([area_3,area_12,area_15,area_19,area_25,area_33]) // This cast is important to export as a table
+
+// This cast is important to export as a table
+var areaCollection = ee.FeatureCollection([
+    area_3,
+    area_12,
+    area_15,
+    area_19,
+    area_25,
+    area_33
+]);
+
 print(areaCollection)
 ```
 Now, export to your google drive!.
