@@ -303,3 +303,5 @@ Map.addLayer(filtered2018, visClassification, 'Filtered 2018');
 
 [Link](https://code.earthengine.google.com/4bb33fe86977177b94e5b3ddac15e0f8)
 
+[Previous: Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_3/README.md) | 
+[Next: Day 5 - Identifying Land Use and Land Cover Changes + Applications](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_5/README.md)
