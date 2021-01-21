@@ -142,7 +142,9 @@ The result of the filtered collection is shown on the console.
 </p>
 
 ## 1.3 Filtering by cloud cover percentage
+
 We can filter the images inside an Image Collection using any information contained in the image's metadata. In this example, we will use the `CLOUD_COVER` property. This property stores the percentage of cloud cover detected by the USGS algorithm.
+
 ```javascript
 // Filter images with less than 50% of cloud cover
 collection = collection

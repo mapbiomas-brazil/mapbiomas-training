@@ -127,6 +127,8 @@ var PostClassification = function (image) {
 ```
 [Link](https://code.earthengine.google.com/07a35e19beced17bad2935048a006f07)
 
+Agora vamos ver como se usa o código do MapBiomas.
+
 ```javascript
 // Set a list of spatial filter parameters
 // classValue is the representative number of a class and maxSize is the maximum
@@ -162,5 +164,56 @@ Map.addLayer(filtered.reproject('EPSG:4326', null, 30), visClassification, 'Filt
 
 [Link](https://code.earthengine.google.com/1237c86837a94fcc549d9d3e1adf59bb)
 
+### 3.1.3 Export the filtered classification
+
+Executamos esse procedimento para todos os mapas anuais do MapBiomas. Utilizamos algumas técnicas para otimizar o tempo de exportação das imagens. Algumas delas podem ser encontradas no nosso github.
+
+```javascript
+// Export the filtered classification to your asset
+Export.image.toAsset({
+    image: filtered, 
+    description: 'filtered-2019', 
+    assetId: 'filtered-2019', 
+    pyramidingPolicy: {'.default': 'mode'},
+    region: classification.geometry(), 
+    scale: 30, 
+    maxPixels: 1e13
+});
+```
 
 ## 3.2 Temporal Filter
+
+Assim como o filtro espacial, o filtro temporal tem como objetivo reclassificar dados usando as informações de seus vizinhos. No entanto, o filtro temporal usa o pixel de uma data no passado e outro em uma data no futuro do pixel em análise. Neste exercício vamos usar uma série temporal de imagens classificadas para a coleção 5 do MapBiomas.
+
+### 3.2.1 Acessing pre-processed MapBiomas data
+:heavy_exclamation_mark: Start a new script.
+
+```javascript
+// List of years used in mapbiomas collection 5
+var years = [
+    '1985', '1986', '1987', '1988', '1989', '1990', '1991', '1992',
+    '1993', '1994', '1995', '1996', '1997', '1998', '1999', '2000',
+    '2001', '2002', '2003', '2004', '2005', '2006', '2007', '2008',
+    '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016',
+    '2017', '2018', '2019'
+];
+
+// The classification name prefix in my asset structure
+var classificationPrefix = 'users/joaovsiqueira1/mapbiomas-course/spatial-temporal-filter/amazonia-';
+
+// Iterate over years list and concatenate de prefix to year
+var classificationIds = years.map(
+    function(year){
+        return classificationPrefix + year;
+    }
+);
+
+// Now see the result
+print(classificationIds);
+```
+<p align="center">
+    <img src="./Assets/list-image-names.png" width=500/>
+</p>
+
+[Link](https://code.earthengine.google.com/5f96dde792fda0569a189062917b66b9)
+

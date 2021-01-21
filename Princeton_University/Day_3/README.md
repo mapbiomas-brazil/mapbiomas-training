@@ -238,7 +238,7 @@ Map.addLayer(classification, {
 ## 2.7. Export classification to asset
 
 ```javascript
-// Export the mosaic to your asset
+// Export the classification to your asset
 Export.image.toAsset({
     image: classification, 
     description: 'classification-2020', 
