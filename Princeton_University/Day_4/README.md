@@ -324,7 +324,7 @@ var areaPerClass =  function(img,classID){
   return ee.Feature(null,{'classId':classID,'area_m²':area.get('area')})
 }
 ```
-... how to use a multi-paramater function, and merge the feature results as a ***ee.FeatureCollection***
+... use the function to calculate the classes areas and merge the each ee.Feature as a ***ee.FeatureCollection***
 ```
 var area_3 = areaPerClass(filtered2018,3);
 var area_12 = areaPerClass(filtered2018,15);
