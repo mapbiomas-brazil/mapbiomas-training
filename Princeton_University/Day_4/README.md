@@ -312,7 +312,7 @@ Map projections are mathematical formulations designed to minimize possible dist
 
 ![area calculation](https://user-images.githubusercontent.com/11324805/105396510-bca9d680-5bfe-11eb-8657-31eb2f3b167d.png)
 
-```
+```javascript
 /**
  * Calculating the class area
  * @param {ee.Image} img, {number} classID
@@ -327,8 +327,8 @@ var areaPerClass =  function(img,classID){
   return ee.Feature(null,{'classId':classID,'area_m²':area.get('area')})
 }
 ```
-... use the function to calculate the classes areas and merge the each ee.Feature as a ***ee.FeatureCollection***
-```
+Use the function to calculate the classes areas and merge the each ee.Feature as a `ee.FeatureCollection`.
+```javascript
 var area_3 = areaPerClass(filtered2018,3);
 var area_12 = areaPerClass(filtered2018,15);
 var area_15 = areaPerClass(filtered2018,15);
@@ -339,15 +339,15 @@ var areaCollection = ee.FeatureCollection([area_3,area_12,area_15,area_19,area_2
 print(areaCollection)
 ```
 Now, export to your google drive!.
-```
+
+```javascript
 //Exporting...
 Export.table.toDrive({
-  collection:areaCollection,
-  description:'area_perClass_2018',
-  fileNamePrefix:'area_perClass_2018',
-  folder:'map_stats',
-  fileFormat:'csv',
-  
+    collection:areaCollection,
+    description:'area_perClass_2018',
+    fileNamePrefix:'area_perClass_2018',
+    folder:'map_stats',
+    fileFormat:'csv',
 })
 ```
 [Link](https://code.earthengine.google.com/2d5a555f54cec6bd734cb5bf20b6f27b)
