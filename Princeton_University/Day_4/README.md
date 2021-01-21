@@ -44,7 +44,7 @@ This step is not a simple process to do. Thus, here we will have a little more a
 
 ```javascript
 /**
- * Post-classification spatial filter prototype
+ * Post-classification spatial filter struct
  * 
  * @param {ee.Image} image [eeObject classification image]
  *
