@@ -4,7 +4,6 @@
     <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
 </div>
 
-# Concepts of the Day
 
 # 3. Post-classification
 
