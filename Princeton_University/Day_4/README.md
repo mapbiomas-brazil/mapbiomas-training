@@ -38,11 +38,11 @@ Map.addLayer(classification, visClassification, 'Classification 2019');
 [Link](https://code.earthengine.google.com/6dc68d4352fe954eef137c45bd452cee)
 
 ### 3.1.2 Use the mapbiomas spatial filter code
-Essa etapa não é um processo simples de se fazer, por isso teremos um código um pouco mais avançado aqui. O filtro espacial tem o objetivo de reclassificar pequenos grupos de pixels isolados usando a informação dos pixels vizinhos. Estes pixels isolados, em geral, passam pelo processo de rotulagem do classificador, mas por estarem num padrão espacial disperso acabam por não refletir o resultado esperado. O propósito desta técnica não é alterar o dado de classificação de uma forma significativa, mas trazer uma melhoria sútil ao mapa final. Vamos estudar o código abaixo.
+This step is not a simple process to do. Thus, here we will have a little more advanced code. The spatial filter aims to reclassify small groups of isolated pixels using information from neighboring pixels. The isolated pixels give the classification a noisy appearance, classically known as the "salt and pepper effect." This technique aims not to change the classification data significantly but to bring a subtle improvement to the final map. Let's study the code below.
 
 ```javascript
 /**
- * Classe de pos-classificação para reduzir ruídos na imagem classificada
+ * Post-classification spatial filter prototype
  * 
  * @param {ee.Image} image [eeObjeto imagem de classificação]
  *
@@ -127,7 +127,7 @@ var PostClassification = function (image) {
 ```
 [Link](https://code.earthengine.google.com/07a35e19beced17bad2935048a006f07)
 
-Agora vamos ver como se usa o código do MapBiomas.
+Now, let us see how this code is used inside the MapBiomas structure.
 
 ```javascript
 // Set a list of spatial filter parameters
@@ -166,7 +166,7 @@ Map.addLayer(filtered.reproject('EPSG:4326', null, 30), visClassification, 'Filt
 
 ### 3.1.3 Export the filtered classification
 
-Executamos esse procedimento para todos os mapas anuais do MapBiomas. Utilizamos algumas técnicas para otimizar o tempo de exportação das imagens. Algumas delas podem ser encontradas no nosso github.
+We performed this procedure for all MapBiomas annual maps. We use some techniques to optimize the Image to Asset export process. Some of them are found on our GitHub.
 
 ```javascript
 // Export the filtered classification to your asset
@@ -183,7 +183,7 @@ Export.image.toAsset({
 
 ## 3.2 Temporal Filter
 
-Assim como o filtro espacial, o filtro temporal tem como objetivo reclassificar dados usando as informações de seus vizinhos. No entanto, o filtro temporal usa o pixel de uma data no passado e outro em uma data no futuro do pixel em análise. Neste exercício vamos usar uma série temporal de imagens classificadas para a coleção 5 do MapBiomas.
+The temporal filter uses sequential classifications in a three-year unidirectional moving window to identify temporally non-permitted transitions. The temporal filter inspects the central position of three consecutive years (“ternary”), and if the extremities of the ternary are identical but the centre position is not, then the central pixel is reclassified to match its temporal neighbour class.
 
 ### 3.2.1 Acessing pre-processed MapBiomas data
 :heavy_exclamation_mark: Start a new script.
@@ -215,7 +215,9 @@ print(classificationList);
 [Link](https://code.earthengine.google.com/d125276d7ecd0d578bc4b4cd8cfa84ef)
 
 ### 3.2.2 Converting the list of images to multiband image
-Esta etapa do código vai nos ajudar a interagir com as classificações anuais mais facilmente
+
+Converting to multi-band may reduce the time taken to export the entire filtered dataset to a GEE Asset.
+
 ```javascript
 // Create a image collection from the classification list
 var classificationCollection = ee.ImageCollection.fromImages(classificationList);
@@ -231,7 +233,7 @@ print('classificationMultiBand:', classificationMultiBand);
 [Link](https://code.earthengine.google.com/ceeaabf7945a82312d99b191271ee473)
 
 ### 3.2.3 Apply a simple temporal filter rule
-Vamos usar algumas regras simples no nosso filtro temporal. Neste exercício vamos olhar um pixel anterior e um posterior ao ano 2018. Veja como podemos acessar facilmente as imagens dos anos 2017, 2018 e 2019.
+Let's apply the three-year unidirectional moving window to identify temporally non-permitted transitions. This is a simplification of the MapBiomas entire filtering process.
 
 ```javascript
 // Select the data from 2017, 2018 and 2019.
@@ -240,7 +242,7 @@ var class2018 = classificationMultiBand.select(['33_classification_2018']);
 var class2019 = classificationMultiBand.select(['34_classification_2019']);
 ```
 
-Agora precisamos criar algumas regras usando algebra de mapas. Vamos focar em três classes: `pasture`, `forest formation` and `agriculture`.
+Now we need to create some rules using map algebra. Let's focus on three classes: `pasture`, `forest formation` and `agriculture`.
 
 **Class ids:**
 - Forest formation: 3
@@ -262,7 +264,7 @@ var filtered2018 = class2018
     .where(rule2, 15);
 ```
 
-Precisamos do nosso conjunto de parâmentros de visualização mais uma vez.
+We need our set of visualization parameters again.
 
 ```javascript
 // import the mapbiomas palettes module and get the 'classification5' color scheme
@@ -279,7 +281,7 @@ var visClassification = {
 };
 ```
 
-Agora adicionamos ao mapa as classificações do ano 2018 antes e depois do filtro temporal.
+Now we add to the map the classification of the year 2018, before and after the temporal filter.
 
 ```javascript
 // Add images to map
@@ -305,7 +307,8 @@ Map.addLayer(filtered2018, visClassification, 'Filtered 2018');
 
 ## 3.3 Calculate area
 A spherical or quasi-spherical surface cannot be represented as a plan without some kind of distortions being associated with its representation. That is why the ***Cartographyc Projections*** exist!.
-Map projections are mathematical formulations designed to minimize possible distortions, this distortions can impact your area calculation. Because of this, in GEE, the strategy for calculating areas in a cartographically appropriated way is using a Lambert Azimuthal Equal Area (LAEA)  through the function: ee.Image.pixelArea, as presented in the image below.
+
+Map projections are mathematical formulations designed to minimize possible distortions, and such distortions can impact your area calculation. Because of this, in GEE, the strategy for calculating areas in a cartographically appropriated way is using a Lambert Azimuthal Equal Area (LAEA)  through the function: ee.Image.pixelArea, as presented in the image below.
 
 ![area calculation](https://user-images.githubusercontent.com/11324805/105396510-bca9d680-5bfe-11eb-8657-31eb2f3b167d.png)
 
