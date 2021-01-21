@@ -46,14 +46,14 @@ This step is not a simple process to do. Thus, here we will have a little more a
 /**
  * Post-classification spatial filter prototype
  * 
- * @param {ee.Image} image [eeObjeto imagem de classificação]
+ * @param {ee.Image} image [eeObject classification image]
  *
  * @example
- * var image = ee.Image("aqui vem a sua imagem");
+ * var image = ee.Image("your image path goes here");
  * var filterParams = [
  *     {classValue: 1, maxSize: 3},
- *     {classValue: 2, maxSize: 5}, // o tamanho maximo que o mapbiomas está usado é 5
- *     {classValue: 3, maxSize: 5}, // este valor foi definido em reunião
+ *     {classValue: 2, maxSize: 5}, // Mapbiomas maximum Size
+ *     {classValue: 3, maxSize: 5}, 
  *     {classValue: 4, maxSize: 3},
  *     ];
  * var pc = new PostClassification(image);
@@ -102,9 +102,9 @@ var PostClassification = function (image) {
     };
 
     /**
-     * Método para reclassificar grupos de pixels de mesma classe agrupados
+     * Reclassify small blobs of pixels  
      * @param  {list<dictionary>} filterParams [{classValue: 1, maxSize: 3},{classValue: 2, maxSize: 5}]
-     * @return {ee.Image}  Imagem classificada filtrada
+     * @return {ee.Image}  Filtered Classification Image
      */
     this.spatialFilter = function (filterParams) {
 
