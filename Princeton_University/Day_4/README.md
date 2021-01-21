@@ -201,19 +201,105 @@ var years = [
 // The classification name prefix in my asset structure
 var classificationPrefix = 'users/joaovsiqueira1/mapbiomas-course/spatial-temporal-filter/amazonia-';
 
-// Iterate over years list and concatenate de prefix to year
-var classificationIds = years.map(
+// Iterate over years list, concatenate de prefix to year and load as an ee.Image
+var classificationList = years.map(
     function(year){
-        return classificationPrefix + year;
+        return ee.Image(classificationPrefix + year).rename('classification_'+ year);
     }
 );
 
 // Now see the result
-print(classificationIds);
+print(classificationList);
 ```
-<p align="center">
-    <img src="./Assets/list-image-names.png" width=500/>
-</p>
 
-[Link](https://code.earthengine.google.com/5f96dde792fda0569a189062917b66b9)
+[Link](https://code.earthengine.google.com/d125276d7ecd0d578bc4b4cd8cfa84ef)
+
+### 3.2.2 Converting the list of images to multiband image
+Esta etapa do código vai nos ajudar a interagir com as classificações anuais mais facilmente
+```javascript
+// Create a image collection from the classification list
+var classificationCollection = ee.ImageCollection.fromImages(classificationList);
+
+// Prints a image collection
+print('classificationCollection:', classificationCollection);
+
+// Convert the classification collection to an image where each year is a band
+var classificationMultiBand = classificationCollection.toBands();
+
+print('classificationMultiBand:', classificationMultiBand);
+```
+[Link](https://code.earthengine.google.com/ceeaabf7945a82312d99b191271ee473)
+
+### 3.2.3 Apply a simple temporal filter rule
+Vamos usar algumas regras simples no nosso filtro temporal. Neste exercício vamos olhar um pixel anterior e um posterior ao ano 2018. Veja como podemos acessar facilmente as imagens dos anos 2017, 2018 e 2019.
+
+```javascript
+// Select the data from 2017, 2018 and 2019.
+var class2017 = classificationMultiBand.select(['32_classification_2017']);
+var class2018 = classificationMultiBand.select(['33_classification_2018']);
+var class2019 = classificationMultiBand.select(['34_classification_2019']);
+```
+
+Agora precisamos criar algumas regras usando algebra de mapas. Vamos focar em três classes: `pasture`, `forest formation` and `agriculture`.
+
+Class ids:
+- forest formation: 3
+- pasture: 15
+- pasture: 19
+
+See the mapbiomas documentation for more information about the legend.
+
+```javascript
+// Find pixels where is forest in 2017 and pasture in 2018 and forest in 2019
+var rule1 = class2017.eq(3).and(class2018.eq(15)).and(class2019.eq(3));
+
+// Find pixels where is pasture in 2017 and agriculture in 2018 and pasture in 2019
+var rule2 = class2017.eq(15).and(class2018.eq(19)).and(class2019.eq(15));
+
+// Reclassify 2018 forest noise using rule 1 and 2
+var filtered2018 = class2018
+    .where(rule1, 3)
+    .where(rule2, 15);
+```
+
+Precisamos do nosso conjunto de parâmentros de visualização mais uma vez.
+
+```javascript
+// import the mapbiomas palettes module and get the 'classification5' color scheme
+var palette = require('users/mapbiomas/modules:Palettes.js').get('classification5');
+
+print(palette);
+
+// Set a visualization parameter
+var visClassification = {
+    'min': 0,
+    'max': 45,
+    'palette': palette,
+    'format': 'png'
+};
+```
+
+Agora adicionamos ao mapa as classificações do ano 2018 antes e depois ao filtro temporal.
+
+```javascript
+// Add images to map
+Map.addLayer(class2018, visClassification, 'Classification 2018');
+Map.addLayer(filtered2018, visClassification, 'Filtered 2018');
+```
+<div align=center>
+    <caption>
+        <h4><strong>Classification before temporal filter</strong></h4>
+    </caption>
+    <p align="center">
+        <img src="./Assets/temporal-filter-before.png"/>
+    </p>
+    <caption>
+        <h4><strong>Classification after temporal filter</strong></h4>
+    </caption>
+    <p align="center">
+        <img src="./Assets/temporal-filter-after.png"/>
+    </p>
+</div>
+
+[Link](https://code.earthengine.google.com/4bb33fe86977177b94e5b3ddac15e0f8)
 
