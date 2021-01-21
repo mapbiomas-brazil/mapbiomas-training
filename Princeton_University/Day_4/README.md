@@ -305,6 +305,46 @@ Map.addLayer(filtered2018, visClassification, 'Filtered 2018');
 
 ## 3.3 Calculate area
 
+```
+/**
+ * Calculating the class area
+ * @param {ee.Image} img, {number} classID
+ * @return {ee.Feature} feature with indentified metadata
+*/
+var areaPerClass =  function(img,classID){
+  var area = img.rename('area').eq(classID).multiply(ee.Image.pixelArea()).reduceRegion({
+                                                                      reducer: ee.Reducer.sum(),
+                                                                      geometry: img.geometry(),
+                                                                      scale: 30,
+                                                                      maxPixels: 1e13})
+  return ee.Feature(null,{'classId':classID,'area_m²':area.get('area')})
+}
+```
+
+```
+var area_3 = areaPerClass(filtered2018,3);
+var area_12 = areaPerClass(filtered2018,15);
+var area_15 = areaPerClass(filtered2018,15);
+var area_19 = areaPerClass(filtered2018,19);
+var area_25 = areaPerClass(filtered2018,25);
+var area_33 = areaPerClass(filtered2018,33);
+var areaCollection = ee.FeatureCollection([area_3,area_12,area_15,area_19,area_25,area_33]) // This cast is important to export as a table
+print(areaCollection)
+```
+
+```
+//Exporting...
+Export.table.toDrive({
+  collection:areaCollection,
+  description:'area_perClass_2018',
+  fileNamePrefix:'area_perClass_2018',
+  folder:'map_stats',
+  fileFormat:'csv',
+  
+})
+```
+[Link](https://code.earthengine.google.com/2d5a555f54cec6bd734cb5bf20b6f27b)
+
 
 [Previous: Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_3/README.md) | 
 [Next: Day 5 - Identifying Land Use and Land Cover Changes + Applications](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_5/README.md)
