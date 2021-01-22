@@ -100,7 +100,7 @@ Map.addLayer(urban2019, visClassification, 'Urban Infrastructure 2019');
 
 Theme                           |Year 2000                             |Year 2019
 :------------------------------:|:------------------------------------:|:------------------------------------:
-Atlantic Forest                 |![](./Assets/atlantic-forest-2000.png)|![](./Assets/atlantic-forest-2019.png)
-Coastal Zone                    |![](./Assets/coastal-zone-2000.png)   |![](./Assets/coastal-zone-2019.png)
-Pasture                         |![](./Assets/pasture-2000.png)        |![](./Assets/pasture-2019.png)
-Urban Infrastructure            |![](./Assets/urban-2000.png)          |![](./Assets/urban-2019.png)
+**Atlantic Forest**             |![](./Assets/atlantic-forest-2000.png)|![](./Assets/atlantic-forest-2019.png)
+**Coastal Zone**                |![](./Assets/coastal-zone-2000.png)   |![](./Assets/coastal-zone-2019.png)
+**Pasture**                     |![](./Assets/pasture-2000.png)        |![](./Assets/pasture-2019.png)
+**Urban Infrastructure**        |![](./Assets/urban-2000.png)          |![](./Assets/urban-2019.png)
