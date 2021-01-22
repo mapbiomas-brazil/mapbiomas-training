@@ -100,25 +100,25 @@ Map.addLayer(urban2019, visClassification, 'Urban Infrastructure 2019');
 
 <!DOCTYPE html>
 <div class="box">
-    <img src="./Assets/atlantic-forest-2000.png"/>
+    <img src="./Assets/atlantic-forest-2000.png" style="width:25%"/>
     <span> Atlantic Forest 2000 </span>
 </div>
 <div class="box">
-    <img src="./Assets/atlantic-forest-2019.png"/>
+    <img src="./Assets/atlantic-forest-2019.png" style="width:25%"/>
     <span> Atlantic Forest 2019 </span>
 </div>
 <div class="box">
-    <img src="./Assets/coastal-zone-2000.png"/>
+    <img src="./Assets/coastal-zone-2000.png" style="width:25%"/>
     <span> Coastal Zone 2000 </span>
 </div>
 <div class="box">
-    <img src="./Assets/coastal-zone-2019.png"/>
+    <img src="./Assets/coastal-zone-2019.png" style="width:25%"/>
     <span> Coastal Zone 2019 </span>
 </div>
 
 <style>
     div.box {
-        width: 200px;
+        /* width: 25.0%; */
         display: inline-block;
     }
 </style>
