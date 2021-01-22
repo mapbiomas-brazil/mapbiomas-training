@@ -80,7 +80,7 @@ var visClassification = {
 };
 ```
 
-<a href="https://mapbiomas-br-site.s3.amazonaws.com/_PT-BR__C%C3%B3digos_da_legenda_Cole%C3%A7%C3%A3o_5.pdf">
+<a href="https://mapbiomas-br-site.s3.amazonaws.com/_PT-BR__C%C3%B3digos_da_legenda_Cole%C3%A7%C3%A3o_5.pdf" target="_blank">
     <img alt="Qries" src="./Assets/legend.png" width=150">
 </a>
 
