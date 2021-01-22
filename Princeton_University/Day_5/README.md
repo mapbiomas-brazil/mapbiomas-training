@@ -80,6 +80,8 @@ var visClassification = {
 };
 ```
 
+Inserir a tabela de classes e cores aqui [https://mapbiomas-br-site.s3.amazonaws.com/_PT-BR__C%C3%B3digos_da_legenda_Cole%C3%A7%C3%A3o_5.pdf]
+
 Now, let's understand our data a little.
 
 ```javascript
