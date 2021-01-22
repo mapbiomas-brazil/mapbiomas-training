@@ -158,7 +158,7 @@ var integrate = function(data){
 };
 ```
 
-Now, let's apply the `integrate ()` function and generate the integrated maps for the years 2000 and 2019.
+Now, let's apply the `integrate()` function and generate the integrated maps for the years 2000 and 2019.
 
 ```javascript
 var data2000 = {
