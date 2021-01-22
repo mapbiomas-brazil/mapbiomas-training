@@ -6,8 +6,6 @@
 
 ![Flowchart Integration](https://user-images.githubusercontent.com/11324805/105530663-d9114600-5cc6-11eb-9723-605de85b31ff.png)
 
-# Concepts of the Day
-
 # 4 Integrating maps
 
 The integration is a process that compiles/overlaps classifications prepared by different teams that are specialized in specific themes. This process results in a map with multiple classes, detailing different themes and superior accuracy.
