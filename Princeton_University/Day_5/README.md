@@ -104,3 +104,32 @@ Theme                           |Year 2000                             |Year 201
 **Coastal Zone**                |![](./Assets/coastal-zone-2000.png)   |![](./Assets/coastal-zone-2019.png)
 **Pasture**                     |![](./Assets/pasture-2000.png)        |![](./Assets/pasture-2019.png)
 **Urban Infrastructure**        |![](./Assets/urban-2000.png)          |![](./Assets/urban-2019.png)
+
+## 4.2 Define an integration function
+
+Vamos definir uma função para fazer a integração dos mapas
+
+```javascript
+var integrate = function(data){
+
+
+};
+```
+
+Agora, vamos aplicar a função `integrate()` e gerar os mapas integrados para os anos 2000 e 2019
+
+```javascript
+var integrated2000 = integrate({
+    'atlantic_forest': atlanticForest2000,
+    'pasture': pasture2000,
+    'coasta_zone': coastalZone2000,
+    'urban': urban2000,
+});
+
+var integrated2019 = integrate({
+    'atlantic_forest': atlanticForest2019,
+    'pasture': pasture2019,
+    'coasta_zone': coastalZone2019,
+    'urban': urban2019,
+});
+```
