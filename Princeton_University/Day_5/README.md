@@ -98,7 +98,7 @@ Map.addLayer(urban2000, visClassification, 'Urban Infrastructure 2000');
 Map.addLayer(urban2019, visClassification, 'Urban Infrastructure 2019');
 ```
 
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <div class="box">
     <img src="./Assets/atlantic-forest-2000.png" style="width:25%"/>
     <span> Atlantic Forest 2000 </span>
@@ -121,4 +121,8 @@ Map.addLayer(urban2019, visClassification, 'Urban Infrastructure 2019');
         /* width: 25.0%; */
         display: inline-block;
     }
-</style>
+</style> -->
+
+Solarized dark             |  Solarized Ocean          |Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](./Assets/atlantic-forest-2000.png)  |  ![](./Assets/atlantic-forest-2019.png)![](./Assets/coastal-zone-2000.png)  |  ![](./Assets/coastal-zone-2019.png)
