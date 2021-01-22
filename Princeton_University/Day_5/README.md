@@ -215,7 +215,8 @@ Agora, vamos aplicar a função `generateTransition()` e gerar o mapa de transi�
 ```javascript
 var transitions = generateTransitions(integrated2000, integrated2019);
 
-transitions = transitions.rename('transitions_2000_2019');
+transitions = transitions.rename('transitions_2000_2019')
+                         .selfMask();
 ```
 
 ## 5.2 Add transitions to map
@@ -232,6 +233,64 @@ var visTransition = {
 Map.addLayer(transitions, visTransition, 'Transitions 2000-2019');
 ```
 
-Integrated 2000                         |Integrated 2019                       |Transitions 2000-2019
-:--------------------------------------:|:------------------------------------:|:------------------------------------:
-![](./Assets/integrated-2000.png)       |![](./Assets/integrated-2019.png)     |![](./Assets/transitions.png)
+## 5.3 Explore the transition data
+### 5.3.1 Vegetation loss
+```javascript
+//
+var vegetationLossIds = [
+        321, // forest to agriculture or pasture
+        315, // forest to pasture
+        325, // forest to not vegetated areas
+        324  // forest to urban
+    ];
+
+var vegetationLoss = transitions.remap(
+    vegetationLossIds, 
+    ee.List.sequence(1, vegetationLossIds.length),
+    0
+);
+
+// set a visualization parameters to transitions map
+var visVegetationLoss = {
+    'min': 0,
+    'max': 1,
+    'format': 'png',
+    'palette': '20242E,ff0000'
+};
+
+// Add transitions to map
+Map.addLayer(vegetationLoss, visVegetationLoss, 'Vegetation Loss 2000-2019');
+```
+
+### 5.3.1 Vegetation gain
+```javascript
+//
+var vegetationGainIds = [
+        2103, // agriculture or pasture to forest
+        1503, // pasture to forest
+        2503, // not vegetated areas to forest
+        2403  // urban to forest
+    ];
+
+var vegetationGain = transitions.remap(
+    vegetationGainIds, 
+    ee.List.sequence(1, vegetationGainIds.length),
+    0
+);
+
+// set a visualization parameters to transitions map
+var visVegetationGain = {
+    'min': 0,
+    'max': 1,
+    'format': 'png',
+    'palette': '20242E,00ff00'
+};
+
+// Add transitions to map
+Map.addLayer(vegetationGain, visVegetationGain, 'Vegetation Gain 2000-2019');
+```
+
+Integrated 2000                  |Integrated 2019                  |Transitions 2000-2019        |Transitions 2000-2019            |Transitions 2000-2019
+:-------------------------------:|:-------------------------------:|:---------------------------:|:-------------------------------:|:--------------------------------:
+![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/transitions.png)|![](./Assets/vegetation-loss.png)|![](./Assets/vegetation-gain.png)
+
