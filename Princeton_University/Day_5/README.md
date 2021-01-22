@@ -4,19 +4,19 @@
     <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
 </div>
 
-![Diagrama em branco (3)](https://user-images.githubusercontent.com/11324805/105530663-d9114600-5cc6-11eb-9723-605de85b31ff.png)
+![Flowchart Integration](https://user-images.githubusercontent.com/11324805/105530663-d9114600-5cc6-11eb-9723-605de85b31ff.png)
 
 # Concepts of the Day
 
 # 4 Integrating maps
 
-A integração de mapas do mapbiomas é um processo que compila mapas elaborados por equipes especializadas em temas específicos. Esse processo resulta em um mapa com multiplas classes, com detalhamento de diversos temas e acurácia superior.
+The integration is a process that compiles/overlaps classifications prepared by different teams that are specialized in specific themes. This process results in a map with multiple classes, detailing different themes and superior accuracy.
 
 ## 4.1 Acessing MapBiomas data
 
 ### 4.1.1 Defining asset ids
 
-Vamos organizar nossos dados de uma forma estruturada para facilitar as coisas.
+To make things easier, we will organize our data in a structured way.
 
 ```javascript
 // Assets folder
@@ -41,7 +41,7 @@ var urbanId2019 = assetsFolder + '/urban-2019';
 
 ### 4.1.2 Load images
 
-Aqui nós estamos lendo as imagens.
+Lets load our images in pair of years.
 
 ```javascript
 // Atlantic Forest images
@@ -63,7 +63,7 @@ var urban2019 = ee.Image(urbanId2019);
 
 ### 4.1.3 Add data to map
 
-Vamos preparar o ambiente para a visualização dos dados
+Let's prepare the environment for data visualization
 
 ```javascript
 // import the mapbiomas palettes module and get the 'classification5' color scheme
@@ -80,7 +80,7 @@ var visClassification = {
 };
 ```
 
-Agora, vamos entender um pouco nossos dados.
+Now, let's understand our data a little.
 
 ```javascript
 // Add Atlantic Forest data to map
@@ -109,7 +109,7 @@ Theme                           |Year 2000                               |Year 2
 
 ## 4.2 Define an integration function
 
-Vamos definir uma função para fazer a integração dos mapas
+Let's define a function to integrate the maps.
 
 ```javascript
 /**
@@ -154,7 +154,7 @@ var integrate = function(data){
 };
 ```
 
-Agora, vamos aplicar a função `integrate()` e gerar os mapas integrados para os anos 2000 e 2019.
+Now, let's apply the `integrate ()` function and generate the integrated maps for the years 2000 and 2019.
 
 ```javascript
 var data2000 = {
@@ -176,7 +176,7 @@ var data2019 = {
 var integrated2019 = integrate(data2019);
 ```
 
-Vamos ver o resultado da nossa integração
+Let's see the result of our integration.
 
 ```javascript
 // Add integrated data to map
@@ -190,7 +190,7 @@ Theme                           |Year 2000                               |Year 2
 
 # 5 Transitions maps
 
-Uma vez que temos os mapas integrados, podemos compará-los e criar um mapa de transições.
+Once we have the maps integrated, we can compare them and create a transition map.
 
 ## 5.1 Define a function to generate the transition map
 ```javascript
@@ -212,7 +212,7 @@ var generateTransitions = function(imageT0, imageT1){
 ```
 ## 5.1 Apply the transitions function
 
-Agora, vamos aplicar a função `generateTransition()` e gerar o mapa de transições entre os anos 2000 e 2019.
+Now, let's apply the `generateTransition()` function and generate the transition map between the years 2000 and 2019.
 
 ```javascript
 var transitions = generateTransitions(integrated2000, integrated2019);
