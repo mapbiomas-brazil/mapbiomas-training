@@ -265,6 +265,10 @@ var visVegetationLoss = {
 Map.addLayer(vegetationLoss, visVegetationLoss, 'Vegetation Loss 2000-2019');
 ```
 
+Integrated 2000                  |Integrated 2019                  |Vegegtation Loss 2000-2019       
+:-------------------------------:|:-------------------------------:|:-------------------------------:
+![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/vegetation-loss.png)
+
 ### 5.3.1 Vegetation gain
 ```javascript
 //
@@ -293,7 +297,7 @@ var visVegetationGain = {
 Map.addLayer(vegetationGain, visVegetationGain, 'Vegetation Gain 2000-2019');
 ```
 
-Integrated 2000                  |Integrated 2019                  |Vegegtation Loss 2000-2019       |Vegetation Gain 2000-2019
-:-------------------------------:|:-------------------------------:|:-------------------------------:|:--------------------------------:
-![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/vegetation-loss.png)|![](./Assets/vegetation-gain.png)
+Integrated 2000                  |Integrated 2019                  |Vegetation Gain 2000-2019
+:-------------------------------:|:-------------------------------:|:--------------------------------:
+![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/vegetation-gain.png)
 
