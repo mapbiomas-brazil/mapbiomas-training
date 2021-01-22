@@ -98,12 +98,12 @@ Map.addLayer(urban2000, visClassification, 'Urban Infrastructure 2000');
 Map.addLayer(urban2019, visClassification, 'Urban Infrastructure 2019');
 ```
 
-Theme                           |Year 2000                             |Year 2019
-:------------------------------:|:------------------------------------:|:------------------------------------:
-**Atlantic Forest**             |![](./Assets/atlantic-forest-2000.png)|![](./Assets/atlantic-forest-2019.png)
-**Coastal Zone**                |![](./Assets/coastal-zone-2000.png)   |![](./Assets/coastal-zone-2019.png)
-**Pasture**                     |![](./Assets/pasture-2000.png)        |![](./Assets/pasture-2019.png)
-**Urban Infrastructure**        |![](./Assets/urban-2000.png)          |![](./Assets/urban-2019.png)
+Theme                           |Year 2000                               |Year 2019
+:------------------------------:|:--------------------------------------:|:--------------------------------------:
+**Atlantic Forest**             |![](./Assets/atlantic-forest-2000-2.png)|![](./Assets/atlantic-forest-2019-2.png)
+**Coastal Zone**                |![](./Assets/coastal-zone-2000-2.png)   |![](./Assets/coastal-zone-2019-2.png)
+**Pasture**                     |![](./Assets/pasture-2000-2.png)        |![](./Assets/pasture-2019-2.png)
+**Urban Infrastructure**        |![](./Assets/urban-2000-2.png)          |![](./Assets/urban-2019-2.png)
 
 ## 4.2 Define an integration function
 
@@ -185,7 +185,3 @@ Map.addLayer(integrated2019, visClassification, 'Integrated 2019');
 Theme                           |Year 2000                               |Year 2019
 :------------------------------:|:--------------------------------------:|:------------------------------------:
 **Integrated**                  |![](./Assets/integrated-2000.png)       |![](./Assets/integrated-2019.png)
-**Atlantic Forest**             |![](./Assets/atlantic-forest-2000-2.png)|![](./Assets/atlantic-forest-2019-2.png)
-**Coastal Zone**                |![](./Assets/coastal-zone-2000-2.png)   |![](./Assets/coastal-zone-2019-2.png)
-**Pasture**                     |![](./Assets/pasture-2000-2.png)        |![](./Assets/pasture-2019-2.png)
-**Urban Infrastructure**        |![](./Assets/urban-2000-2.png)          |![](./Assets/urban-2019-2.png)
