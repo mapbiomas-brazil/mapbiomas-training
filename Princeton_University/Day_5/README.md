@@ -4,6 +4,8 @@
     <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
 </div>
 
+![Diagrama em branco (3)](https://user-images.githubusercontent.com/11324805/105530663-d9114600-5cc6-11eb-9723-605de85b31ff.png)
+
 # Concepts of the Day
 
 # 4 Integrating maps
