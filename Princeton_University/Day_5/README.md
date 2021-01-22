@@ -232,6 +232,9 @@ var visTransition = {
 // Add transitions to map
 Map.addLayer(transitions, visTransition, 'Transitions 2000-2019');
 ```
+Integrated 2000                  |Integrated 2019                  |Transitions 2000-2019        
+:-------------------------------:|:-------------------------------:|:---------------------------:
+![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/transitions.png)
 
 ## 5.3 Explore the transition data
 ### 5.3.1 Vegetation loss
@@ -290,7 +293,7 @@ var visVegetationGain = {
 Map.addLayer(vegetationGain, visVegetationGain, 'Vegetation Gain 2000-2019');
 ```
 
-Integrated 2000                  |Integrated 2019                  |Transitions 2000-2019        |Transitions 2000-2019            |Transitions 2000-2019
-:-------------------------------:|:-------------------------------:|:---------------------------:|:-------------------------------:|:--------------------------------:
-![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/transitions.png)|![](./Assets/vegetation-loss.png)|![](./Assets/vegetation-gain.png)
+Integrated 2000                  |Integrated 2019                  |Transitions 2000-2019            |Transitions 2000-2019
+:-------------------------------:|:-------------------------------:|:-------------------------------:|:--------------------------------:
+![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/vegetation-loss.png)|![](./Assets/vegetation-gain.png)
 
