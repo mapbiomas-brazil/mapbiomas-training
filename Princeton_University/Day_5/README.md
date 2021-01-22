@@ -6,7 +6,7 @@
 
 # Concepts of the Day
 
-# 4. Integrating maps
+# 4 Integrating maps
 
 A integração de mapas do mapbiomas é um processo que compila mapas elaborados por equipes especializadas em temas específicos. Esse processo resulta em um mapa com multiplas classes, com detalhamento de diversos temas e acurácia superior.
 
@@ -113,7 +113,7 @@ Vamos definir uma função para fazer a integração dos mapas
 /**
  * Integrated the mapbiomas thematic maps
  * 
- * @param {data} object {biome, pasture, coasta_zone, urban}
+ * @param {object} data {biome, pasture, coasta_zone, urban}
  *
  * @return {ee.Image} integrated
  */
@@ -152,7 +152,7 @@ var integrate = function(data){
 };
 ```
 
-Agora, vamos aplicar a função `integrate()` e gerar os mapas integrados para os anos 2000 e 2019
+Agora, vamos aplicar a função `integrate()` e gerar os mapas integrados para os anos 2000 e 2019.
 
 ```javascript
 var data2000 = {
@@ -185,3 +185,53 @@ Map.addLayer(integrated2019, visClassification, 'Integrated 2019');
 Theme                           |Year 2000                               |Year 2019
 :------------------------------:|:--------------------------------------:|:------------------------------------:
 **Integrated**                  |![](./Assets/integrated-2000.png)       |![](./Assets/integrated-2019.png)
+
+# 5 Transitions maps
+
+Uma vez que temos os mapas integrados, podemos compará-los e criar um mapa de transições.
+
+## 5.1 Define a function to generate the transition map
+```javascript
+/**
+ * Generate transitions map
+ * 
+ * @param {ee.Image} imageT0
+ * @param {ee.Image} imageT1
+ *
+ * @return {ee.Image} transitions
+ */
+var generateTransitions = function(imageT0, imageT1){
+
+    // Algebraic solution to generate transitions map
+    var transitions = imageT0.multiply(100).add(imageT1);
+
+    return transitions;
+};
+```
+## 5.1 Apply the transitions function
+
+Agora, vamos aplicar a função `generateTransition()` e gerar o mapa de transições entre os anos 2000 e 2019.
+
+```javascript
+var transitions = generateTransitions(integrated2000, integrated2019);
+
+transitions = transitions.rename('transitions_2000_2019');
+```
+
+## 5.2 Add transitions to map
+
+```javascript
+// set a visualization parameters to transitions map
+var visTransition = {
+    'min': 303,
+    'max': 3333,
+    'format': 'png'
+};
+
+// Add transitions to map
+Map.addLayer(transitions, visTransition, 'Transitions 2000-2019');
+```
+
+Integrated 2000                         |Integrated 2019                       |Transitions 2000-2019
+:--------------------------------------:|:------------------------------------:|:------------------------------------:
+![](./Assets/integrated-2000.png)       |![](./Assets/integrated-2019.png)     |![](./Assets/transitions.png)
