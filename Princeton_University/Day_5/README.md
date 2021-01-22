@@ -89,15 +89,15 @@ Now, let's understand our data a little.
 Map.addLayer(atlanticForest2000, visClassification, 'Atlantic Forest 2000');
 Map.addLayer(atlanticForest2019, visClassification, 'Atlantic Forest 2019');
 
-// Add Atlantic Forest data to map
+// Add Costal Zone data to map
 Map.addLayer(coastalZone2000, visClassification, 'Coastal Zone 2000');
 Map.addLayer(coastalZone2019, visClassification, 'Coastal Zone 2019');
 
-// Add Atlantic Forest data to map
+// Add Pasture data to map
 Map.addLayer(pasture2000, visClassification, 'Pasture 2000');
 Map.addLayer(pasture2019, visClassification, 'Pasture 2019');
 
-// Add Atlantic Forest data to map
+// Add Urban Infrasctructure data to map
 Map.addLayer(urban2000, visClassification, 'Urban Infrastructure 2000');
 Map.addLayer(urban2019, visClassification, 'Urban Infrastructure 2019');
 ```
