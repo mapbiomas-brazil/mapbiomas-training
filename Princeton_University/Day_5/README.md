@@ -110,26 +110,82 @@ Theme                           |Year 2000                             |Year 201
 Vamos definir uma função para fazer a integração dos mapas
 
 ```javascript
+/**
+ * Integrated the mapbiomas thematic maps
+ * 
+ * @param {data} object {biome, pasture, coasta_zone, urban}
+ *
+ * @return {ee.Image} integrated
+ */
 var integrate = function(data){
 
+    // Crosscuting themes classes
+    var pasture = data.pasture.eq(15);
+    var urban = data.urban.eq(24);
+    var mangrove = data.coastal_zone.eq(5);
+    var beach = data.coastal_zone.eq(23);
 
+    // Biome classes
+    var forest = data.biome.eq(3);
+    var agricultureOrPasture = data.biome.eq(21);
+    var nonNaturalForestFormation = data.biome.eq(13);
+    var notVegetatedArea = data.biome.eq(25);
+    var water = data.biome.eq(33);
+    var rock = data.biome.eq(29);
+
+    // Start an empty image
+    var integrated = ee.Image(0);
+
+    // Apply basic integration rules
+    integrated = integrated.where(agricultureOrPasture, 21);
+    integrated = integrated.where(pasture, 15);
+    integrated = integrated.where(nonNaturalForestFormation, 13);
+    integrated = integrated.where(forest, 3);
+    integrated = integrated.where(water, 33);
+    integrated = integrated.where(notVegetatedArea, 25);
+    integrated = integrated.where(rock, 29);
+    integrated = integrated.where(urban, 24);
+    integrated = integrated.where(mangrove, 5);
+    integrated = integrated.where(beach, 23);
+
+    return integrated;
 };
 ```
 
 Agora, vamos aplicar a função `integrate()` e gerar os mapas integrados para os anos 2000 e 2019
 
 ```javascript
-var integrated2000 = integrate({
-    'atlantic_forest': atlanticForest2000,
+var data2000 = {
+    'biome': atlanticForest2000,
     'pasture': pasture2000,
-    'coasta_zone': coastalZone2000,
+    'coastal_zone': coastalZone2000,
     'urban': urban2000,
-});
+};
 
-var integrated2019 = integrate({
-    'atlantic_forest': atlanticForest2019,
+var integrated2000 = integrate(data2000);
+
+var data2019 = {
+    'biome': atlanticForest2019,
     'pasture': pasture2019,
-    'coasta_zone': coastalZone2019,
+    'coastal_zone': coastalZone2019,
     'urban': urban2019,
-});
+};
+
+var integrated2019 = integrate(data2019);
 ```
+
+Vamos ver o resultado da nossa integração
+
+```javascript
+// Add integrated data to map
+Map.addLayer(integrated2000, visClassification, 'Integrated 2000');
+Map.addLayer(integrated2019, visClassification, 'Integrated 2019');
+```
+
+Theme                           |Year 2000                               |Year 2019
+:------------------------------:|:--------------------------------------:|:------------------------------------:
+**Integrated**                  |![](./Assets/integrated-2000.png)       |![](./Assets/integrated-2019.png)
+**Atlantic Forest**             |![](./Assets/atlantic-forest-2000-2.png)|![](./Assets/atlantic-forest-2019-2.png)
+**Coastal Zone**                |![](./Assets/coastal-zone-2000-2.png)   |![](./Assets/coastal-zone-2019-2.png)
+**Pasture**                     |![](./Assets/pasture-2000-2.png)        |![](./Assets/pasture-2019-2.png)
+**Urban Infrastructure**        |![](./Assets/urban-2000-2.png)          |![](./Assets/urban-2019-2.png)
