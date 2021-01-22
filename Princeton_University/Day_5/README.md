@@ -301,3 +301,36 @@ Integrated 2000                  |Integrated 2019                  |Vegetation G
 :-------------------------------:|:-------------------------------:|:--------------------------------:
 ![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/vegetation-gain.png)
 
+### 5.3.1 Water gain
+```javascript
+//
+var waterGainIds = [
+        333,  // forest to water
+        533,  // mangrove to water
+        2133, // agriculture or pasture to water
+        1533, // pasture to water
+        2533, // not vegetated areas to water
+        2433  // urban to water
+    ];
+
+var waterGain = transitions.remap(
+    waterGainIds, 
+    ee.List.sequence(1, waterGainIds.length),
+    0
+);
+
+// set a visualization parameters to transitions map
+var viswaterGain = {
+    'min': 0,
+    'max': 1,
+    'format': 'png',
+    'palette': '20242E,00ff00'
+};
+
+// Add transitions to map
+Map.addLayer(waterGain, viswaterGain, 'Water Gain 2000-2019');
+```
+
+Integrated 2000                  |Integrated 2019                  |Vegetation Gain 2000-2019
+:-------------------------------:|:-------------------------------:|:--------------------------------:
+![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/water-gain.png)
