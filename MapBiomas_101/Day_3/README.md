@@ -1,6 +1,6 @@
 <div class="fluid-row" id="header">
     <img src='../Assets/mapbiomas-icon.png' height='150' width='auto' align='right'>
-    <h1 class="title toc-ignore">MapBiomas Princeton Course</h1>
+    <h1 class="title toc-ignore">MapBiomas 101</h1>
     <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
 </div>
 
@@ -29,17 +29,6 @@ Use `ee.Image()` function to load the image mosaic.
 ```javascript
 // Choose an image asset id
 var imageId = "users/joaovsiqueira1/mapbiomas-course/mosaic-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/africa-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/congo-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/miami-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/new-zeland-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/peru-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/puerto-rico-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/rondonia-brazil-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/san-francisco-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/santarem-brazil-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/sri-lanka-2020";
-// var imageId = "users/joaovsiqueira1/mapbiomas-course/mosaic-2020";
 
 // Load as an image
 var mosaic = ee.Image(imageId);
@@ -52,7 +41,7 @@ print('Mosaic:', mosaic);
 ```javascript
 // Set the visualization parameters
 var visParams = {
-    bands: ['B6_median','B5_median','B4_median'],
+    bands: ['SR_B6_median','SR_B5_median','SR_B4_median'],
     gain: [0.08,0.06,0.2]
 };
 
@@ -63,7 +52,7 @@ Map.addLayer(mosaic, visParams, 'Mosaic');
 Map.centerObject(mosaic, 9);
 ```
 ![load image](./Assets/load-image.png)
-[Link](https://code.earthengine.google.com/a0651d74137aec7017cb6c027e17ddd9)
+[Link](https://code.earthengine.google.com/7d19adaf4f70922c855874abfad39728)
 
 ## 2.2. Collect manual samples
 ### 2.2.1. Create a feature collection
@@ -77,7 +66,7 @@ The script is prepared to accept the names: `vegetation`,` notVegetation` and `w
 Sample collection results in a set of polygons similar to what we see in the next figure:
 
 ![samples](./Assets/samples.png)
-[Link](https://code.earthengine.google.com/18babe6933e054bc7dbc357c255d27b5)
+[Link](https://code.earthengine.google.com/94e5ffd94106e93646df7526bc25062e)
 
 ## 2.3. Generate random points
 
@@ -150,7 +139,7 @@ print(trainedSamples);
     <img src="./Assets/trained-samples.png" alt="drawing" width="400"/>
 </p>
 
-[Link](https://code.earthengine.google.com/db2b9bff4e672fc6f078e3aa6f170383)
+[Link](https://code.earthengine.google.com/2222f52f386e92f3e7c4ff9f2a1991bb)
 
 ## 2.5. Training the Random Forest classifier
 
@@ -181,24 +170,24 @@ classifier = classifier.train({
     'features': trainedSamples, 
     'classProperty': 'class', 
     'inputProperties': [
-        'B2_max',
-        'B2_median',
-        'B2_min',
-        'B3_max',
-        'B3_median',
-        'B3_min',
-        'B4_max',
-        'B4_median',
-        'B4_min',
-        'B5_max',
-        'B5_median',
-        'B5_min',
-        'B6_max',
-        'B6_median',
-        'B6_min',
-        'B7_max',
-        'B7_median',
-        'B7_min',
+        'SR_B2_max',
+        'SR_B2_median',
+        'SR_B2_min',
+        'SR_B3_max',
+        'SR_B3_median',
+        'SR_B3_min',
+        'SR_B4_max',
+        'SR_B4_median',
+        'SR_B4_min',
+        'SR_B5_max',
+        'SR_B5_median',
+        'SR_B5_min',
+        'SR_B6_max',
+        'SR_B6_median',
+        'SR_B6_min',
+        'SR_B7_max',
+        'SR_B7_median',
+        'SR_B7_min',
         'evi_max',
         'evi_median',
         'evi_min',
@@ -211,7 +200,7 @@ classifier = classifier.train({
     ]
     });
 ```
-[Link](https://code.earthengine.google.com/98f19e617c7ff534db890cff5a3d072e)
+[Link](https://code.earthengine.google.com/f90c938dd0a21e881490cbdd573da4c0)
 
 ## 2.6. Run the classifier
 

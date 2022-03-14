@@ -171,7 +171,7 @@ print('Images with less than 50% of cloud cover:', collection);
 ```
 [Link](https://code.earthengine.google.com/6b1928ec388a9cc8b9a608a8a67369e6)
 
-## 1.4 Appling scale factor
+## 1.4 Applying scaling factor
 
 ```javascript
 // Applies scaling factors.
