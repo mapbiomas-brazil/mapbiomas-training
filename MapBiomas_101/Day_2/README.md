@@ -25,82 +25,98 @@
             <h4><strong>Landsat Surface Reflectance-Derived Spectral Indices Pixel Quality Band: Landsat 8</strong></h4>
         </caption>
         <thead>
-            <tr style="background-color:grey;font-size:12px;">
-                <th scope="col">Bit</th>
-                <th scope="col">Value</th>
-                <th scope="col">Cumulative Sum</th>
-                <th scope="col">Interpretation</th>
-            </tr>
         </thead>
         <tbody style="font-size:12px;">
-            <tr>
-                <td>0</td>
-                <td>1</td>
-                <td>1</td>
-                <td>Fill</td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>2</td>
-                <td>3</td>
-                <td>Clear</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>4</td>
-                <td>7</td>
-                <td>Water</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>8</td>
-                <td>15</td>
-                <td>Cloud Shadow</td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>16</td>
-                <td>31</td>
-                <td>Snow</td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>32</td>
-                <td>63</td>
-                <td>Cloud</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>64</td>
-                <td>127</td>
-                <td colspan="1" rowspan="2">Cloud Confidence<br>00= None<br>01= Low<br>10 = Medium<br>11 = High</td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>128</td>
-                <td>255</td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>256</td>
-                <td>511</td>
-                <td colspan="1" rowspan="2">Cirrus Confidence<br>00= Not set<br>01= Low&nbsp; from OLI Band 9
-                    Reflectance<br>10 = Medium from OLI Band 9 Reflectance<br>11 = High from OLI Band 9 Reflectance</td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>512</td>
-                <td>1023</td>
-            </tr>
-            <tr>
-                <td>10-15</td>
-                <td>-</td>
-                <td>-</td>
-                <td>Unused</td>
+            <tr class="alt">
+                <td colspan="100">
+                    <ul>
+                        <li>
+                            Bit 0: Fill
+                            <ul>
+                            </ul>
+                        </li>
+                        <li>
+                            Bit 1: Dilated Cloud
+                            <ul>
+                            </ul>
+                        </li>
+                        <li>
+                            Bit 2: Cirrus (high confidence)
+                            <ul>
+                            </ul>
+                        </li>
+                        <li>
+                            Bit 3: Cloud
+                            <ul>
+                            </ul>
+                        </li>
+                        <li>
+                            Bit 4: Cloud Shadow
+                            <ul>
+                            </ul>
+                        </li>
+                        <li>
+                            Bit 5: Snow
+                            <ul>
+                            </ul>
+                        </li>
+                        <li>
+                            Bit 6: Clear
+                            <ul>
+                                <li>0: Cloud or Dilated Cloud bits are set</li>
+                                <li>1: Cloud and Dilated Cloud bits are not set</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Bit 7: Water
+                            <ul>
+                            </ul>
+                        </li>
+                        <li>
+                            Bits 8-9: Cloud Confidence
+                            <ul>
+                                <li>0: None</li>
+                                <li>1: Low</li>
+                                <li>2: Medium</li>
+                                <li>3: High</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Bits 10-11: Cloud Shadow Confidence
+                            <ul>
+                                <li>0: None</li>
+                                <li>1: Low</li>
+                                <li>2: Medium</li>
+                                <li>3: High</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Bits 12-13: Snow/Ice Confidence
+                            <ul>
+                                <li>0: None</li>
+                                <li>1: Low</li>
+                                <li>2: Medium</li>
+                                <li>3: High</li>
+                            </ul>
+                        </li>
+                        <li>
+                            Bits 14-15: Cirrus Confidence
+                            <ul>
+                                <li>0: None</li>
+                                <li>1: Low</li>
+                                <li>2: Medium</li>
+                                <li>3: High</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </devsite-expandable>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
+
+
 
 **Vegetation and Water Index**: A Vegetation Index (VI) or Water Index (WI) are spectral transformations of two or more bands designed to enhance the contribution of vegetation/water properties in a given satellite data.
 
