@@ -1,6 +1,6 @@
 <div class="fluid-row" id="header">
     <img src='../Assets/mapbiomas-icon.png' height='150' width='auto' align='right'>
-    <h1 class="title toc-ignore">MapBiomas Trainig - ENG</h1>
+    <h1 class="title toc-ignore">MapBiomas Training - ENG</h1>
     <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
 </div>
 
@@ -10,4 +10,4 @@ The Mapbiomas Project consists of a collaborative network of specialists in the 
 # Day 1: MapBiomas presentation (by Tasso Azevedo)
 link:
 
-[Next: Day 2 - Accessing Satellite Images and Creating Mosaics](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_2/README.md)
+[Next: Day 2 - Accessing Satellite Images and Creating Mosaics](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_2/README.md)

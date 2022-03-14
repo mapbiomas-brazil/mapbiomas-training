@@ -377,5 +377,5 @@ Export.table.toDrive({
 
 ## 3.3 Calculate area for many regions
 
-[Previous: Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_3/README.md) | 
-[Next: Day 5 - Identifying Land Use and Land Cover Changes + Applications](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_5/README.md)
+[Previous: Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_3/README.md) | 
+[Next: Day 5 - Identifying Land Use and Land Cover Changes + Applications](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_5/README.md)

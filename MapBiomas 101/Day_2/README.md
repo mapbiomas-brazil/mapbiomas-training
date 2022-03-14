@@ -123,7 +123,7 @@ For this example, we need to define a region of interest using the geometry edit
  */
 
 // Landsat 8 SR collection id
-var collectionId = "LANDSAT/LC08/C01/T1_SR";
+var collectionId = "LANDSAT/LC08/C02/T1_L2";
 
 // Create a collection filtering by ROI and date
 var collection = ee.ImageCollection(collectionId)
@@ -133,7 +133,7 @@ var collection = ee.ImageCollection(collectionId)
 // prints the collection structure
 print('Initial collection:', collection);
 ```
-[Link](https://code.earthengine.google.com/11a7b5b5aea57c3e335d80cceea93ff4)
+[Link](https://code.earthengine.google.com/087c341602e84a934de6c7e33ff4cda1)
 
 The result of the filtered collection is shown on the console.
 
@@ -153,14 +153,40 @@ collection = collection
 // prints the collection structure
 print('Images with less than 50% of cloud cover:', collection);
 ```
-[Link](https://code.earthengine.google.com/eee987609a5988f7952495653a1721a8)
+[Link](https://code.earthengine.google.com/6b1928ec388a9cc8b9a608a8a67369e6)
 
-## 1.4 Selecting bands
+## 1.4 Appling scale factor
+
+```javascript
+// Applies scaling factors.
+function applyScaleFactors(image) {
+    // Select every optical bands and applies scaling factor
+    var opticalBands = image.select('SR_B.')
+        .multiply(0.0000275)
+        .add(-0.2)
+        .multiply(10000);
+    
+    // Select every thermal bands and applies scaling factor
+    var thermalBands = image.select('ST_B.*')
+        .multiply(0.00341802)
+        .add(149.0);
+    
+    return image.addBands(opticalBands, null, true)
+                .addBands(thermalBands, null, true);
+}
+
+collection = collection.map(applyScaleFactors);
+
+print('Images reescaled:', collection);
+```
+[Link](https://code.earthengine.google.com/ddf75cfb2d5bf096071c4096f095989c)
+
+## 1.5 Selecting bands
 
 In this example we will use the bands `blue, green, red, nir, swir 1 and swir 2` which are respectively named` B2, B3, B4, B5, B6, B7`. It is necessary to select the quality band also, `pixel_qa`, as it will be used later to remove the clouds and shadows.
 
 ```javascript
-var bandNames = ['B2','B3','B4','B5','B6','B7','pixel_qa'];
+var bandNames = ['SR_B2','SR_B3','SR_B4','SR_B5','SR_B6','SR_B7','QA_PIXEL'];
 
 // Select bands of interest
 collection = collection.select(bandNames);
@@ -168,15 +194,16 @@ collection = collection.select(bandNames);
 // prints the collection structure
 print('Images with selected bands:', collection);
 ```
-[Link](https://code.earthengine.google.com/f7c1d2d42402f418ad24082387298413)
+[Link](https://code.earthengine.google.com/3f4e20a5e6775b9da8a19011f8773aa8)
 
-## 1.5 Adding data to map
+
+## 1.6 Adding data to map
 Let's take a look in our selection and see how our collection is visually represented. Right now, we still have cloud pixels inseid our 'roi'. We can use the `inspector` to check the pixel values of the images. Do your inspection!!
 
 ```javascript
 // Set a visualization parameters object
 var visParams = {
-    bands: ['B6', 'B5', 'B4'],
+    bands: ['SR_B6', 'SR_B5', 'SR_B4'],
     gain: [0.08,0.06,0.2]
 };
 
@@ -185,12 +212,12 @@ Map.addLayer(collection, visParams, 'collection');
 ```
 ![Add data to map](./Assets/map-add-layer.png)
 
-[Link](https://code.earthengine.google.com/577ed08b58ab11c50ecbf0644d486468)
+[Link](https://code.earthengine.google.com/3ab5fc975c1b105426c795215c0db926)
 
-## 1.6 Removing clouds and shadows
+## 1.7 Removing clouds and shadows
 Here we are going to show a simple way to remove clouds from Landsat images. This technique is very simple and must be combined with other more complex algorithms to generate a better result.
 
-### 1.6.1 Define a cloud masking function
+### 1.7.1 Define a cloud masking function
 
 ```javascript
 /**
@@ -205,12 +232,14 @@ Here we are going to show a simple way to remove clouds from Landsat images. Thi
  */
 var cloudMasking = function (image) {
 
-    var qaBand = image.select(['pixel_qa']);
+    var qaBand = image.select(['QA_PIXEL']);
 
-    var cloud = qaBand.bitwiseAnd(Math.pow(2, 5)).not(); 
-    var shadow = qaBand.bitwiseAnd(Math.pow(2, 3)).not(); 
+    var cloud = qaBand.bitwiseAnd(Math.pow(2, 3)).not(); 
+    var cloudEdge = qaBand.bitwiseAnd(Math.pow(2, 1)).not(); 
+    var shadow = qaBand.bitwiseAnd(Math.pow(2, 4)).not(); 
     
     image = image.updateMask(cloud);
+    image = image.updateMask(cloudEdge);
     image = image.updateMask(shadow);
     
     return image;
@@ -218,7 +247,7 @@ var cloudMasking = function (image) {
 ```
 :question: What exactly is `bitwiseAnd()` function doing?
 
-### 1.6.2 Apply the cloud masking function to each image
+### 1.7.2 Apply the cloud masking function to each image
 
 ```javascript
 var collectionWithoutClouds = collection.map(cloudMasking);
@@ -229,10 +258,10 @@ print('Collection without clouds:', collectionWithoutClouds);
 ```
 
 ![Add data to map](./Assets/collection-without-clouds.png)
-[Link](https://code.earthengine.google.com/3cc83b06172b6686942826fb268da298)
+[Link](https://code.earthengine.google.com/3369cfdfe56790fc6c0e703907208a97)
 
-## 1.7 Calculate NDVI, EVI and NDWI for each image
-### 1.7.1 Defining NDVI, EVI and NDWI functions
+## 1.8 Calculate NDVI, EVI and NDWI for each image
+### 1.8.1 Defining NDVI, EVI and NDWI functions
 ```javascript
 /**
  * @name
@@ -242,7 +271,7 @@ print('Collection without clouds:', collectionWithoutClouds);
  */
 var computeNDVI = function (image) {
 
-	var exp = '( b("B5") - b("B4") ) / ( b("B5") + b("B4") )';
+	var exp = '( b("SR_B5") - b("SR_B4") ) / ( b("SR_B5") + b("SR_B4") )';
 
 	var ndvi = image.expression(exp).rename("ndvi");
 
@@ -257,7 +286,7 @@ var computeNDVI = function (image) {
  */
 var computeNDWI = function (image) {
 
-	var exp = 'float(b("B5") - b("B6"))/(b("B5") + b("B6"))';
+	var exp = 'float(b("SR_B5") - b("SR_B6"))/(b("SR_B5") + b("SR_B6"))';
 
 	var ndwi = image.expression(exp).rename("ndwi");
 
@@ -272,7 +301,7 @@ var computeNDWI = function (image) {
  */
 var computeEVI = function (image) {
 
-	var exp = '2.5 * ((b("B5") - b("B4")) / (b("B5") + 6 * b("B4") - 7.5 * b("B2") + 1))';
+	var exp = '2.5 * ((b("SR_B5") - b("SR_B4")) / (b("SR_B5") + 6 * b("SR_B4") - 7.5 * b("SR_B2") + 1))';
 
 	var evi = image.expression(exp).rename("evi");
 
@@ -281,7 +310,7 @@ var computeEVI = function (image) {
 };
 ```
 
-### 1.7.2 Apply the functions to each image
+### 1.8.2 Apply the functions to each image
 
 ```javascript
 // For each image, apply the functions computeNDVI, computeNDWI and computeEVI.
@@ -304,9 +333,9 @@ Map.addLayer(collectionWithIndexes, visNdvi, 'collection with indexes');
 print('collection with indexes:', collectionWithIndexes);
 ```
 ![calculate indexes](./Assets/indexes.png)
-[Link](https://code.earthengine.google.com/8926c3abed9bc742631de710664c70b2)
+[Link](https://code.earthengine.google.com/49448f8b1a3d60d198f6b2c30f7e91bd)
 
-## 1.8 Make the median, minimum and maximum mosaics
+## 1.9 Make the median, minimum and maximum mosaics
 
 ```javascript
 // Generate median, minimum and maximum mosaics.
@@ -318,9 +347,9 @@ var maximum = collectionWithIndexes.reduce(ee.Reducer.max());
     <img src="./Assets/median-scheme.jpeg" alt="drawing" width="500"/>
 </p>
 
-[Link](https://code.earthengine.google.com/f8840aa6e6c4d3a3ce559828fc2597a9)
+[Link](https://code.earthengine.google.com/f9fdf5c78cc6cd1690203a6221ef13e7)
 
-## 1.9 Make the final mosaic
+## 1.10 Make the final mosaic
 
 ```javascript
 // Merges the median, minimum and maximum mosaics
@@ -337,7 +366,7 @@ var visNdvi = {
 
 // Sets false color visualization parameter object
 var visFalseColor = {
-    bands: ['B6_median', 'B5_median', 'B4_median'],
+    bands: ['SR_B6_median', 'SR_B5_median', 'SR_B4_median'],
     gain: [0.08, 0.06, 0.2],
     gamma: 0.85
 };
@@ -349,9 +378,9 @@ Map.addLayer(mosaic, visNdvi, 'NDVI median mosaic');
 print('final mosaic:', mosaic);
 ```
 ![Reduce to median](./Assets/median-mosaic.png)
-[Link](https://code.earthengine.google.com/b8aba3015012ca8c28de81d9c8cbe9ec)
+[Link](https://code.earthengine.google.com/98ad795ac2424ea37fa03e879f366fda)
 
-## 1.10 Export mosaic to GEE asset
+## 1.11 Export mosaic to GEE asset
 
 ```javascript
 // Export the mosaic to your asset
@@ -365,7 +394,7 @@ Export.image.toAsset({
     maxPixels: 1e13
 });
 ```
-[Link](https://code.earthengine.google.com/f399447aecdb13329eb747e5ddd58214)
+[Link](https://code.earthengine.google.com/13878f05742dbff4ce448d0855ea22a5)
 
-[Previous: Day 1 - MapBiomas presentation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_1/README.md) | [Next: Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/Princeton_University/Day_3/README.md)
+[Previous: Day 1 - MapBiomas presentation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_1/README.md) | [Next: Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_3/README.md)
 
