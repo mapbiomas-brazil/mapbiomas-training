@@ -1,6 +1,6 @@
 <div class="fluid-row" id="header">
     <img src='../Assets/mapbiomas-icon.png' height='150' width='auto' align='right'>
-    <h1 class="title toc-ignore">MapBiomas 101</h1>
+    <h1 class="title toc-ignore">MapBiomas Training</h1>
     <h4 class="author"><em>Cesar Diniz, João Siqueira, Luiz Cortinhas, Luize Pinheiro and Tasso Azevedo</em></h4>
 </div>
 
