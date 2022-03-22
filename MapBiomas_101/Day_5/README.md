@@ -1,7 +1,7 @@
 <div class="fluid-row" id="header">
     <img src='../Assets/mapbiomas-icon.png' height='150' width='auto' align='right'>
     <h1 class="title toc-ignore">MapBiomas 101</h1>
-    <h4 class="author"><em>Tasso Azevedo, Cesar Diniz, Luiz Cortinhas and João Siqueira</em></h4>
+    <h4 class="author"><em>Cesar Diniz, João Siqueira, Luiz Cortinhas, Luize Pinheiro and Tasso Azevedo</em></h4>
 </div>
 
 ![Flowchart Integration](https://user-images.githubusercontent.com/11324805/105530663-d9114600-5cc6-11eb-9723-605de85b31ff.png)
