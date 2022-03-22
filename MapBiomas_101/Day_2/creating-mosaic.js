@@ -162,6 +162,8 @@ var maximum = collectionWithIndexes.reduce(ee.Reducer.max());
 // Merges the median, minimum and maximum mosaics
 var mosaic = median.addBands(minimum).addBands(maximum);
 
+print('Mosaic:', mosaic);
+
 // Sets a visualization parameter object to NDVI median
 var visNdvi = {
     bands: ['ndvi_median'],

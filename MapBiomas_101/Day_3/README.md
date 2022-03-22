@@ -1,6 +1,6 @@
 <div class="fluid-row" id="header">
     <img src='../Assets/mapbiomas-icon.png' height='150' width='auto' align='right'>
-    <h1 class="title toc-ignore">MapBiomas 101</h1>
+    <h1 class="title toc-ignore">MapBiomas Training</h1>
     <h4 class="author"><em>Cesar Diniz, João Siqueira, Luiz Cortinhas, Luize Pinheiro and Tasso Azevedo</em></h4>
 </div>
 
@@ -28,7 +28,7 @@ Use `ee.Image()` function to load the image mosaic.
 
 ```javascript
 // Choose an image asset id
-var imageId = "users/joaovsiqueira1/mapbiomas-course/mosaic-2020";
+var imageId = "users/joaovsiqueira1/mapbiomas-training/mosaic-2020";
 
 // Load as an image
 var mosaic = ee.Image(imageId);
@@ -52,7 +52,7 @@ Map.addLayer(mosaic, visParams, 'Mosaic');
 Map.centerObject(mosaic, 9);
 ```
 ![load image](./Assets/load-image.png)
-[Link](https://code.earthengine.google.com/7d19adaf4f70922c855874abfad39728)
+[Link](https://code.earthengine.google.com/1c89a99b49c7de5c512de4ddaceee9cf)
 
 ## 2.2. Collect manual samples
 ### 2.2.1. Create a feature collection
@@ -66,7 +66,7 @@ The script is prepared to accept the names: `vegetation`,` notVegetation` and `w
 Sample collection results in a set of polygons similar to what we see in the next figure:
 
 ![samples](./Assets/samples.png)
-[Link](https://code.earthengine.google.com/94e5ffd94106e93646df7526bc25062e)
+[Link](https://code.earthengine.google.com/c3168af89c0dcab70885cf0a73674615)
 
 ## 2.3. Generate random points
 
@@ -112,9 +112,12 @@ var samples = vegetationPoints.merge(notVegetationPoints).merge(waterPoints);
 
 print(samples);
 
-Map.addLayer(samples, {color: 'red'}, 'samples');
+Map.addLayer(samples.filter(ee.Filter.eq('class', 1)), {color: '#005b2b'}, 'samples');
+Map.addLayer(samples.filter(ee.Filter.eq('class', 2)), {color: '#fff104'}, 'samples');
+Map.addLayer(samples.filter(ee.Filter.eq('class', 3)), {color: '#1488ff'}, 'samples');
 ```
 ![samples](./Assets/generate-random-points.png)
+[Link](https://code.earthengine.google.com/8bdf55ba47b8d538debb65897931ad34)
 
 ## 2.4. Collect the spectral information
 
@@ -128,7 +131,7 @@ var trainedSamples = mosaic.reduceRegions({
     'scale': 30,
   });
 
-trainedSamples = trainedSamples.filter(ee.Filter.notNull(['B2_max']));
+trainedSamples = trainedSamples.filter(ee.Filter.notNull(['SR_B2_max']));
 
 print(trainedSamples);
 ```
@@ -200,7 +203,6 @@ classifier = classifier.train({
     ]
     });
 ```
-[Link](https://code.earthengine.google.com/f90c938dd0a21e881490cbdd573da4c0)
 
 ## 2.6. Run the classifier
 
@@ -214,7 +216,7 @@ var classification = mosaic.classify(classifier);
 Map.addLayer(classification, {
         'min': 0,
         'max': 3,
-        'palette': ['ffffff,00aa00,ff0000,0000ff'],
+        'palette': ['#ffffff','#005b2b','#fff104','#1488ff'],,
         'format': 'png'
     },
     'classification'
@@ -222,7 +224,7 @@ Map.addLayer(classification, {
 ```
 
 ![samples](./Assets/classification.png)
-[Link](https://code.earthengine.google.com/69f685ee6b0426a5c27ac5007bc4670b)
+[Link](https://code.earthengine.google.com/3dba3901a9fe0b3142f8ab96dc525ba7)
 
 ## 2.7. Export classification to asset
 
@@ -239,6 +241,6 @@ Export.image.toAsset({
 });
 ```
 
-[Link](https://code.earthengine.google.com/f8d9de8e8b0af476c7eb6402746d8e63)
+[Link](https://code.earthengine.google.com/207e6bd17ea66726d081ed709c8687b2)
 
 [Previous: Day 2 - Accessing Satellite Images and Creating Mosaics](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_2/README.md) | [Next: Day 4 - Spatial filter, Temporal Filter and Area Calculation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_4/README.md)

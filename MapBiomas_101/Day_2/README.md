@@ -242,7 +242,7 @@ Here we are going to show a simple way to remove clouds from Landsat images. Thi
  * @description
  *      Removes clouds and shadows using the pixel_qa band
  * @argument
- *      ee.Image with pixel_qa band
+ *      ee.Image with QA_PIXEL band
  * @returns
  *      ee.Image without clouds
  */
