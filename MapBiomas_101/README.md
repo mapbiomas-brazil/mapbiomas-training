@@ -9,6 +9,8 @@ This training course aims to briefly explain and demonstrate the core GIS, Remot
 
 # Summary
 * [Day 1 - MapBiomas presentation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_1/README.md)
+  - Overview of all course (4 days)
+  - Introduction of MapBiomas: who it starts, strategies & methods, products)
 * [Day 2 - Accessing Satellite Images and Creating Mosaics](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_2/README.md)
 * [Day 3 - Classification using Random Forest](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_3/README.md)
 * [Day 4 - Spatial filter, Temporal Filter and Area Calculation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_4/README.md)
