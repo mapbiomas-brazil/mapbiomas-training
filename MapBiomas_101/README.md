@@ -5,7 +5,7 @@
 </div>
 
 # About
-This training course aims to briefly explain and demonstrate the core GIS, Remote Sensing, and Coding procedures associated with the MapBiomas Project. The project consists of a collaborative network of specialists in remote sensing, GIS, land-use, biomes, and computer science who rely on the Google Earth Engine platform and its cloud computing capabilities to produce annual land use and land cover maps for Brazil. The whole project runs based on machine and deep-leaning supervised classifiers.
+This training course briefly explains and demonstrates the core GIS, Remote Sensing, and Coding procedures associated with the MapBiomas Project. The project comprises a collaborative network of specialists in remote sensing, GIS, land-use, biomes, and computer science who rely on the Google Earth Engine platform and its cloud computing capabilities to produce annual land use and land cover maps for Brazil. The whole project runs based on machine and deep-leaning supervised classifiers.
 
 # Summary
 * [Day 1 - MapBiomas presentation](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_1/README.md)
