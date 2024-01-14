@@ -5,7 +5,7 @@
 </div>
 
 # MapBiomas Bakground
-The Mapbiomas Project consists of a collaborative network of specialists in the fileds of remote sensing, GIS, land-use, biomes, and computer science who rely on the Google Earth Engine platform and its cloud computing capabilities to produce annual land use and land cover maps from Brazil. The whole project runs based on machine learning supervised classifiers.
+The Mapbiomas Project comprises a collaborative network of remote sensing, GIS, land-use, biomes, and computer science specialists who rely on the Google Earth Engine platform and its cloud computing capabilities to produce annual land use and land cover maps from Brazil. The whole project runs based on machine learning supervised classifiers.
 
 # Day 1: MapBiomas presentation (by Tasso Azevedo)
 Presentation: https://drive.google.com/drive/folders/1tLAhG2go-jBCBcgj4-wIJYS0PxY4dk_X?usp=sharing
