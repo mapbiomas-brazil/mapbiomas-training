@@ -9,7 +9,7 @@ The Mapbiomas Project comprises a collaborative network of remote sensing, GIS, 
 
 
 # Day 1: MapBiomas presentation (by Tasso Azevedo)
-Presentation:[ https://drive.google.com/drive/folders/1tLAhG2go-jBCBcgj4-wIJYS0PxY4dk_X?usp=sharing](https://docs.google.com/presentation/d/1EP6QvNAScJjdMqB4qggzIwUj1zXAZci8G66kZ9ppfIg/edit?usp=sharing)
+Presentation:https://docs.google.com/presentation/d/1EP6QvNAScJjdMqB4qggzIwUj1zXAZci8G66kZ9ppfIg/edit?usp=share_link
 </br>
 Step-by-Step: https://docs.google.com/presentation/d/11OF8NnMTmcbni51zNznvbisp0ROD8jCM2pBtaEs1epk/edit#slide=id.p1
 
