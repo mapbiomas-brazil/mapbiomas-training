@@ -111,6 +111,7 @@ Theme                           |Year 2000                               |Year 2
 
 ## 4.2 Define an integration function
 [LINK](https://code.earthengine.google.com/66dc38e8b6ebbf7dcdce4f6cb83c8013)
+
 Let's define a function to integrate the maps.
 
 ```javascript
@@ -240,6 +241,7 @@ Integrated 2000                  |Integrated 2019                  |Transitions 
 :-------------------------------:|:-------------------------------:|:---------------------------:
 ![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/transitions.png)
 
+
 ## 5.3 Explore the transition data
 ### 5.3.1 Vegetation loss
 ```javascript
@@ -300,7 +302,7 @@ var visVegetationGain = {
 // Add transitions to map
 Map.addLayer(vegetationGain, visVegetationGain, 'Vegetation Gain 2000-2019');
 ```
-
+[LINK](https://code.earthengine.google.com/b700ad89465e693c3731ba5f4d808bba)
 Integrated 2000                  |Integrated 2019                  |Vegetation Gain 2000-2019
 :-------------------------------:|:-------------------------------:|:--------------------------------:
 ![](./Assets/integrated-2000.png)|![](./Assets/integrated-2019.png)|![](./Assets/vegetation-gain.png)
