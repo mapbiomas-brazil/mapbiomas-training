@@ -110,7 +110,7 @@ Theme                           |Year 2000                               |Year 2
 **Urban Infrastructure**        |![](./Assets/urban-2000-2.png)          |![](./Assets/urban-2019-2.png)
 
 ## 4.2 Define an integration function
-
+[LINK](https://code.earthengine.google.com/66dc38e8b6ebbf7dcdce4f6cb83c8013)
 Let's define a function to integrate the maps.
 
 ```javascript
