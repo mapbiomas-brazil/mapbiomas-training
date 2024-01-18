@@ -11,6 +11,6 @@ The Mapbiomas Project comprises a collaborative network of remote sensing, GIS, 
 # Day 1: MapBiomas presentation (by Tasso Azevedo)
 Presentation: https://docs.google.com/presentation/d/1EP6QvNAScJjdMqB4qggzIwUj1zXAZci8G66kZ9ppfIg/edit?usp=share_link
 </br>
-Step-by-Step: https://docs.google.com/presentation/d/11OF8NnMTmcbni51zNznvbisp0ROD8jCM2pBtaEs1epk/edit#slide=id.p1
+Step-by-Step: https://docs.google.com/presentation/d/1IEugrm2Q5-WunTZRY9iq7UD-nwJQAI2X/edit#slide=id.p1
 
 [Next: Day 2 - Accessing Satellite Images and Creating Mosaics](https://github.com/mapbiomas-brazil/mapbiomas-training/tree/main/MapBiomas_101/Day_2/README.md)
